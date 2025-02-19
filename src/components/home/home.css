@@ -1,0 +1,23 @@
+.home-container .hero-container .hero-carousel {
+	background-color: transparent;
+	text-align: center;
+	color: black;
+}
+
+.hero-carousel {
+	padding: 30px;
+}
+
+.info-container {
+	background-color: transparent;
+	border: none;
+}
+
+.info-container i {
+	padding: 10px;
+	font-size: 40px;
+}
+
+.info-item {
+	background-color: transparent;
+}

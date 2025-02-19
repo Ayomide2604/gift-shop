@@ -1,0 +1,97 @@
+.header-container {
+	background-color: transparent;
+	padding: 20px;
+}
+
+.header-container .navbar-brand {
+	color: black;
+}
+
+.header-container .navbar-nav .nav-link {
+	color: black;
+}
+
+.header-container .navbar-nav .nav-link:hover {
+	color: #007bff;
+}
+
+.header-container .navbar-nav .nav-link:active {
+	color: #007bff;
+}
+
+.footer-container {
+	background-color: black;
+	color: white;
+}
+
+.newsletter-container {
+	background-color: #eae7ff;
+}
+
+.categories-container {
+	background-color: #f8f9fa;
+}
+
+.overlay-card {
+	position: relative;
+	border: none;
+	overflow: hidden;
+	height: 300px;
+}
+
+.imageoverlay {
+	position: relative;
+	width: 100%;
+	height: 100%;
+}
+
+.category-image {
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+}
+
+.overlay-content {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background: rgba(0, 0, 0, 0.6); /* Dark overlay */
+	color: white;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	text-align: center;
+	opacity: 0;
+	transition: opacity 0.3s ease-in-out;
+}
+
+.imageoverlay:hover .overlay-content {
+	opacity: 1;
+}
+
+.overlay-title {
+	font-size: 1.8rem;
+	font-weight: bold;
+}
+
+.overlay-content p {
+	font-size: 1rem;
+	margin-bottom: 10px;
+}
+
+.overlay-content button {
+	background-color: #007bff;
+	border: none;
+	padding: 10px 20px;
+	font-size: 1rem;
+	border-radius: 5px;
+	cursor: pointer;
+	transition: background 0.3s;
+}
+
+.overlay-content button:hover {
+	background-color: #0056b3;
+}

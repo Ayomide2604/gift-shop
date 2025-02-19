@@ -4,6 +4,7 @@ import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import NavDropdown from "react-bootstrap/NavDropdown";
 import { NavLink } from "react-router";
+import "./partials.css";
 
 const Header = () => {
 	return (
@@ -14,7 +15,7 @@ const Header = () => {
 			expand="lg"
 			className="bg-body-tertiary"
 		>
-			<Container>
+			<Container fluid className="header-container px-5">
 				<Navbar.Brand as={NavLink} to="/">
 					Gift Shop
 				</Navbar.Brand>
@@ -24,7 +25,7 @@ const Header = () => {
 						<Nav.Link as={NavLink} to="/about">
 							About
 						</Nav.Link>
-						<Nav.Link as={NavLink} to="/recipes">
+						<Nav.Link as={NavLink} to="/packages">
 							Packages
 						</Nav.Link>
 						<Nav.Link as={NavLink} to="/contact">

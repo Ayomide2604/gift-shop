@@ -1,9 +1,48 @@
-#root {
-  margin: 0 auto;
-  padding: 2rem;
+.app-container {
+	font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
 
+.app-container {
+	h1 {
+		font-size: 50px;
+		font-weight: 800;
+		line-height: 60px;
+	}
 
+	h2 {
+		font-size: 40px;
+		font-weight: 600;
+		line-height: 50px;
+	}
 
+	h3 {
+		font-size: 30px;
+		font-weight: 500;
+		line-height: 40px;
+	}
 
+	p {
+		font-size: 18px;
+		font-weight: 400;
+		line-height: 28px;
+	}
+
+	span {
+		font-size: 18px;
+		font-weight: 400;
+		line-height: 28px;
+	}
+}
+
+.btn.btn-primary {
+	background-color: #074ef3;
+	color: #fff;
+	border: none;
+}
+
+.btn.btn-primary:hover {
+	background-color: #1053ef;
+	color: #fff;
+	border: none;
+}
 
