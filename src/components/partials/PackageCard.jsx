@@ -14,7 +14,13 @@ const PackageCard = ({ gift }) => {
 					</Card.Body>
 					<Card.Footer>
 						<Button variant="primary">
-							<NavLink to={`/packages/${gift.title}`}>View Package</NavLink>
+							<NavLink
+								to={`/packages/${gift.title}`}
+								className="text-white"
+								style={{ textDecoration: "none", color: "white" }}
+							>
+								View Package
+							</NavLink>
 						</Button>
 					</Card.Footer>
 				</Card>
