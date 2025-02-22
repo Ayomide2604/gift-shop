@@ -15,7 +15,7 @@ const PackageCard = ({ gift }) => {
 					<Card.Footer>
 						<Button variant="primary">
 							<NavLink
-								to={`/packages/${gift.title}`}
+								to={`/packages/${gift.id}`}
 								className="text-white"
 								style={{ textDecoration: "none", color: "white" }}
 							>

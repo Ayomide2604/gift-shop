@@ -1,21 +1,25 @@
 import React from "react";
 import { Container, Row, Col } from "react-bootstrap";
-import { useParams } from "react-router-dom";
-import { getGiftPackageById } from "../../api/apiServices";
+import { useParams } from "react-router";
+import { getPackageById } from "../../../api/apiServices";
+import { useState, useEffect } from "react";
 
 const PackageDetail = () => {
-	const { id } = useParams();
-	const [giftPackage, setGiftPackage] = useState(null);
+	const [gift, setGift] = useState(null);
 	const [loading, setLoading] = useState(true);
 	const [error, setError] = useState(null);
+	const { id } = useParams();
+	console.log("Package ID from useParams:", id);
 
 	useEffect(() => {
 		const fetchGift = async () => {
 			try {
-				const gift = await getGiftPackageById(id);
-				setGiftPackage(gift);
+				const gift = await getPackageById(id);
+				setGift(gift);
+				console.log(gift);
 			} catch (error) {
 				setError(error);
+				console.error("Error fetching gift package:", error);
 			} finally {
 				setLoading(false);
 			}
@@ -41,7 +45,7 @@ const PackageDetail = () => {
 			<Row>
 				<Col lg={6} sm={12} md={6} xs={12} className="text-center">
 					<img
-						src={gift.image}
+						src={gift.image_url}
 						alt={gift.title}
 						className="category-detail-image p-5"
 						style={{ objectFit: "cover", height: "100%", width: "100%" }}

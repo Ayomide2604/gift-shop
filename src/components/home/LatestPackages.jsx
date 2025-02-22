@@ -14,7 +14,7 @@ const LatestPackages = ({ packages }) => {
 				</Row>
 				<Row>
 					{packages.map((gift) => (
-						<PackageCard key={gift.title} gift={gift} />
+						<PackageCard key={gift.id} gift={gift} />
 					))}
 				</Row>
 				<Row>

@@ -12,7 +12,7 @@ export const getPackages = async () => {
 	return response.data;
 };
 
-export const getGiftPackageById = async (id) => {
+export const getPackageById = async (id) => {
 	const response = await axios.get(`${VITE_API_URL}/packages/${id}`);
 	return response.data;
 };
