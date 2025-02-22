@@ -8,6 +8,7 @@ import Categories from "./components/categories/Categories";
 import Packages from "./components/packages/Packages";
 import Contact from "./components/contact/Contact";
 import Login from "./components/auth/Login";
+import Signup from "./components/auth/Signup";
 function App() {
 	return (
 		<div className="app-container pt-5">
@@ -18,6 +19,7 @@ function App() {
 				<Route path="/packages" element={<Packages />} />
 				<Route path="/contact" element={<Contact />} />
 				<Route path="/login" element={<Login />} />
+				<Route path="/signup" element={<Signup />} />
 			</Routes>
 			<Footer />
 		</div>
