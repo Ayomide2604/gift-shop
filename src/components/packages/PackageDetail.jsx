@@ -1,16 +1,36 @@
 import React from "react";
 import { Container, Row, Col } from "react-bootstrap";
-
-const gift = {
-	title: "Package 1",
-	price: "₦100,000",
-	description:
-		"Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quos.",
-	image:
-		"https://mandilax.com/wp-content/uploads/2020/01/11991075086_856659551-1.jpg",
-};
+import { useParams } from "react-router-dom";
+import { getGiftPackageById } from "../../api/apiServices";
 
 const PackageDetail = () => {
+	const { id } = useParams();
+	const [giftPackage, setGiftPackage] = useState(null);
+	const [loading, setLoading] = useState(true);
+	const [error, setError] = useState(null);
+
+	useEffect(() => {
+		const fetchGift = async () => {
+			try {
+				const gift = await getGiftPackageById(id);
+				setGiftPackage(gift);
+			} catch (error) {
+				setError(error);
+			} finally {
+				setLoading(false);
+			}
+		};
+		fetchGift();
+	}, [id]);
+
+	if (loading) {
+		return <div>Loading...</div>;
+	}
+
+	if (error) {
+		return <div>Error: {error.message}</div>;
+	}
+
 	return (
 		<Container fluid className="package-detail-container mt-5">
 			<Row>

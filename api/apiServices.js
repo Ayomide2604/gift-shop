@@ -11,3 +11,8 @@ export const getPackages = async () => {
 	const response = await axios.get(`${VITE_API_URL}/packages/`);
 	return response.data;
 };
+
+export const getGiftPackageById = async (id) => {
+	const response = await axios.get(`${VITE_API_URL}/packages/${id}`);
+	return response.data;
+};
