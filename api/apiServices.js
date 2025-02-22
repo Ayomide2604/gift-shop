@@ -7,6 +7,11 @@ export const getCategories = async () => {
 	return response.data;
 };
 
+export const getCategoryById = async (id) => {
+	const response = await axios.get(`${VITE_API_URL}/categories/${id}`);
+	return response.data;
+};
+
 export const getPackages = async () => {
 	const response = await axios.get(`${VITE_API_URL}/packages/`);
 	return response.data;
