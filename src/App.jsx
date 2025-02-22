@@ -14,8 +14,6 @@ import PackageDetail from "./components/packages/PackageDetail";
 import Dashboard from "./components/dashboard/Dashboard";
 import Cart from "./components/cart/Cart";
 
-import { useEffect, useState } from "react";
-
 function App() {
 	return (
 		<div className="app-container pt-5">
