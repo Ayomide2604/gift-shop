@@ -3,7 +3,7 @@ import { Container } from "react-bootstrap";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import NavDropdown from "react-bootstrap/NavDropdown";
-import { NavLink } from "react-router";
+import { Link } from "react-router-dom";
 import "./partials.css";
 
 const Header = () => {
@@ -16,22 +16,22 @@ const Header = () => {
 			className="bg-body-tertiary"
 		>
 			<Container fluid className="header-container px-5">
-				<Navbar.Brand as={NavLink} to="/">
+				<Navbar.Brand as={Link} to="/">
 					Gift Shop
 				</Navbar.Brand>
 				<Navbar.Toggle aria-controls="responsive-navbar-nav" />
 				<Navbar.Collapse id="responsive-navbar-nav">
 					<Nav className="me-auto">
-						<Nav.Link as={NavLink} to="/about">
+						<Nav.Link as={Link} to="/about">
 							About
 						</Nav.Link>
-						<Nav.Link as={NavLink} to="/categories">
+						<Nav.Link as={Link} to="/categories">
 							Categories
 						</Nav.Link>
-						<Nav.Link as={NavLink} to="/packages">
+						<Nav.Link as={Link} to="/packages">
 							Packages
 						</Nav.Link>
-						<Nav.Link as={NavLink} to="/contact">
+						<Nav.Link as={Link} to="/contact">
 							Contact
 						</Nav.Link>
 						{/* <NavDropdown title="Dropdown" id="collapsible-nav-dropdown">
@@ -47,14 +47,14 @@ const Header = () => {
 						</NavDropdown> */}
 					</Nav>
 					<Nav>
-						<Nav.Link as={NavLink} to="/login">
+						<Nav.Link as={Link} to="/login">
 							Login
 						</Nav.Link>
-						<Nav.Link as={NavLink} to="/signup">
+						<Nav.Link as={Link} to="/signup">
 							Signup
 						</Nav.Link>
-						<Nav.Link as={NavLink} to="/cart">
-						<i class="bi bi-cart-check-fill"></i>
+						<Nav.Link as={Link} to="/cart">
+							<i class="bi bi-cart-check-fill"></i>
 						</Nav.Link>
 					</Nav>
 				</Navbar.Collapse>

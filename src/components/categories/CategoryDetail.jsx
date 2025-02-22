@@ -1,6 +1,6 @@
 import React from "react";
 import { Container, Row, Col } from "react-bootstrap";
-import { useParams } from "react-router";
+import { useParams } from "react-router-dom";
 import { getCategoryById } from "../../../api/apiServices";
 import { useState, useEffect } from "react";
 import PackageCard from "../partials/PackageCard";

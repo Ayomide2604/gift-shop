@@ -1,6 +1,6 @@
 import "./App.css";
 import "./components/partials/partials.css";
-import { Routes, Route } from "react-router";
+import { Routes, Route } from "react-router-dom";
 import Header from "./components/partials/Header";
 import Footer from "./components/partials/Footer";
 import Home from "./components/home/Home";
@@ -27,7 +27,6 @@ function App() {
 			try {
 				const categories = await getCategories();
 				setCategories(categories);
-				console.log(categories);
 			} catch (error) {
 				setError(error);
 				console.error("Error fetching categories:", error);

@@ -1,6 +1,6 @@
 import React from "react";
 import { Row, Col, Card, Button } from "react-bootstrap";
-import { NavLink } from "react-router";
+import { Link } from "react-router-dom";
 const CategoryCard = ({ category }) => {
 	return (
 		<Col lg={4} md={6} sm={12} className="categories-card mb-3">
@@ -16,7 +16,7 @@ const CategoryCard = ({ category }) => {
 						<Card.Text>{category.description}</Card.Text>
 						<Button
 							variant="primary"
-							as={NavLink}
+							as={Link}
 							to={`/categories/${category.id}`}
 						>
 							Shop Now

@@ -9,24 +9,33 @@ const useAuthStore = create((set) => ({
 	refreshToken: localStorage.getItem("refresh") || null,
 	isAuthenticated: !!localStorage.getItem("access"),
 
-	// login function
+	// Login function
 	login: async (email, password) => {
 		try {
-			const response = await axios.post(`${VITE_API_URL}/auth/jwt/create`, {
+			const response = await axios.post(`${VITE_API_URL}/auth/jwt/create/`, {
 				email,
 				password,
 			});
+
 			const { access, refresh } = response.data;
+
+			// Save tokens in local storage
 			localStorage.setItem("access", access);
 			localStorage.setItem("refresh", refresh);
 
-			// fetch user details
+			console.log("Access Token:", access); // Debugging line
+
+			// Wait before fetching user details to avoid race condition
+			await new Promise((resolve) => setTimeout(resolve, 500));
+
+			// Fetch user details
 			const userResponse = await axios.get(`${VITE_API_URL}/auth/users/me/`, {
 				headers: {
 					Authorization: `Bearer ${access}`,
 				},
 			});
 
+			// Save user details
 			localStorage.setItem("user", JSON.stringify(userResponse.data));
 
 			set({
@@ -35,18 +44,23 @@ const useAuthStore = create((set) => ({
 				refreshToken: refresh,
 				isAuthenticated: true,
 			});
+
+			return true; // Indicate successful login
 		} catch (error) {
 			console.error("Login failed:", error.response?.data || error.message);
+			return false; // Indicate failed login
 		}
 	},
 
 	// Signup function
-	signup: async (username, email, password) => {
+	signup: async (username, email, password, first_name, last_name) => {
 		try {
-			const response = await axios.post(`${VITE_API_URL}/auth/users/`, {
+			await axios.post(`${VITE_API_URL}/auth/users/`, {
 				username,
 				email,
 				password,
+				first_name,
+				last_name,
 			});
 		} catch (error) {
 			console.error("Signup failed:", error.response?.data || error.message);

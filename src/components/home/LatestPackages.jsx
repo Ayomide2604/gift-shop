@@ -1,7 +1,7 @@
 import React from "react";
 import { Container, Row, Col, Button } from "react-bootstrap";
 import PackageCard from "../partials/PackageCard";
-import { NavLink } from "react-router";
+import { Link } from "react-router-dom";
 const LatestPackages = ({ packages }) => {
 	return (
 		<>
@@ -20,7 +20,7 @@ const LatestPackages = ({ packages }) => {
 				<Row>
 					<Col>
 						<Button
-							as={NavLink}
+							as={Link}
 							to="/packages"
 							variant="primary"
 							className="btn-lg"

@@ -1,6 +1,6 @@
 import React from "react";
 import { Col, Row, Card, Button } from "react-bootstrap";
-import { NavLink } from "react-router";
+import { Link } from "react-router-dom";
 const PackageCard = ({ gift }) => {
 	return (
 		<>
@@ -14,13 +14,13 @@ const PackageCard = ({ gift }) => {
 					</Card.Body>
 					<Card.Footer>
 						<Button variant="primary">
-							<NavLink
+							<Link
 								to={`/packages/${gift.id}`}
 								className="text-white"
 								style={{ textDecoration: "none", color: "white" }}
 							>
 								View Package
-							</NavLink>
+							</Link>
 						</Button>
 					</Card.Footer>
 				</Card>

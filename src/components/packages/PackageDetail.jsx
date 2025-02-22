@@ -1,6 +1,6 @@
 import React from "react";
 import { Container, Row, Col } from "react-bootstrap";
-import { useParams } from "react-router";
+import { useParams } from "react-router-dom";
 import { getPackageById } from "../../../api/apiServices";
 import { useState, useEffect } from "react";
 
@@ -9,7 +9,6 @@ const PackageDetail = () => {
 	const [loading, setLoading] = useState(true);
 	const [error, setError] = useState(null);
 	const { id } = useParams();
-	console.log("Package ID from useParams:", id);
 
 	useEffect(() => {
 		const fetchGift = async () => {

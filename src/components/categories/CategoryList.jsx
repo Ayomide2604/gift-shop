@@ -14,7 +14,7 @@ const CategoryList = ({ categories }) => {
 				</Row>
 				<Row className="justify-content-center mb-5">
 					{categories.map((category) => (
-						<CategoryCard key={category.title} category={category} />
+						<CategoryCard key={category.id} category={category} />
 					))}
 				</Row>
 				<Row>
