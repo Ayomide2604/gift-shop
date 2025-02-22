@@ -12,7 +12,7 @@ import CategoryDetail from "./components/categories/CategoryDetail";
 import PackageList from "./components/packages/PackageList";
 import PackageDetail from "./components/packages/PackageDetail";
 import Cart from "./components/cart/Cart";
-
+import Dashboard from "./components/dashboard/Dashboard";
 import { useEffect, useState } from "react";
 import { getCategories, getPackages } from "./../api/apiServices";
 
@@ -71,6 +71,7 @@ function App() {
 				<Route path="/contact" element={<Contact />} />
 				<Route path="/login" element={<Login />} />
 				<Route path="/signup" element={<Signup />} />
+				<Route path="/dashboard" element={<Dashboard />} />
 				<Route path="/cart" element={<Cart />} />
 			</Routes>
 			<Footer />

@@ -12,7 +12,7 @@ const useAuthStore = create((set) => ({
 	login: async ({ email, password }) => {
 		try {
 			const response = await axios.post(`${VITE_API_URL}/auth/jwt/create/`, {
-				email, 
+				email,
 				password,
 			});
 
@@ -37,7 +37,7 @@ const useAuthStore = create((set) => ({
 		try {
 			const response = await axios.get(`${VITE_API_URL}/auth/users/me/`);
 			set({ user: response.data });
-			localStorage.setItem("user", JSON.stringify(response.data)); 
+			localStorage.setItem("user", JSON.stringify(response.data));
 		} catch (error) {
 			console.error("Failed to fetch user profile:", error);
 			useAuthStore.getState().logout();
@@ -51,7 +51,7 @@ const useAuthStore = create((set) => ({
 		delete axios.defaults.headers.common["Authorization"];
 
 		set({ user: null, token: null, refreshToken: null });
-		window.location.href = "/login"; 
+		window.location.href = "/login";
 	},
 
 	initializeAuth: async () => {
