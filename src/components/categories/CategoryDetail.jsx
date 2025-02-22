@@ -4,34 +4,26 @@ import { useParams } from "react-router-dom";
 import { getCategoryById } from "../../../api/apiServices";
 import { useState, useEffect } from "react";
 import PackageCard from "../partials/PackageCard";
+import useCategoryStore from "./../../../store/categoryStore";
 
 const CategoryDetail = () => {
+	const { category, Loading, error, fetchCategoryById } = useCategoryStore();
 	const { id } = useParams();
-	const [category, setCategory] = useState(null);
-	const [error, setError] = useState(null);
-	const [loading, setLoading] = useState(true);
 
 	useEffect(() => {
-		const fetchCategory = async () => {
-			try {
-				const data = await getCategoryById(id);
-				setCategory(data);
-			} catch (error) {
-				setError(error);
-			} finally {
-				setLoading(false);
-			}
-		};
-		fetchCategory();
-	}, [id]);
+		fetchCategoryById(id);
+	}, [id, fetchCategoryById]);
 
-	if (loading) {
-		return <div>Loading...</div>;
+	if (Loading) {
+		return <div>Loading category details...</div>;
 	}
 
 	if (error) {
 		return <div>Error: {error.message}</div>;
 	}
+
+	if (!category) return <div>No category found.</div>;
+
 	return (
 		<Container fluid className="category-detail-container mt-5">
 			<Row>

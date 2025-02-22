@@ -1,44 +1,31 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Container, Row, Col } from "react-bootstrap";
 import { useParams } from "react-router-dom";
-import { getPackageById } from "../../../api/apiServices";
-import { useState, useEffect } from "react";
+import usePackageStore from "./../../../store/packageStore";
 
 const PackageDetail = () => {
-	const [gift, setGift] = useState(null);
-	const [loading, setLoading] = useState(true);
-	const [error, setError] = useState(null);
+	const { gift, Loading, error, fetchPackageById } = usePackageStore();
 	const { id } = useParams();
 
 	useEffect(() => {
-		const fetchGift = async () => {
-			try {
-				const gift = await getPackageById(id);
-				setGift(gift);
-				console.log(gift);
-			} catch (error) {
-				setError(error);
-				console.error("Error fetching gift package:", error);
-			} finally {
-				setLoading(false);
-			}
-		};
-		fetchGift();
-	}, [id]);
+		fetchPackageById(id);
+	}, [id, fetchPackageById]);
 
-	if (loading) {
-		return <div>Loading...</div>;
+	if (Loading) {
+		return <div>Loading package details...</div>;
 	}
 
 	if (error) {
 		return <div>Error: {error.message}</div>;
 	}
 
+	if (!gift) return <div>No package found.</div>;
+
 	return (
 		<Container fluid className="package-detail-container mt-5">
 			<Row>
 				<Col lg={12} sm={12} md={12} className="text-center">
-					<h1>Package Detail </h1>
+					<h1>Package Detail</h1>
 				</Col>
 			</Row>
 			<Row>

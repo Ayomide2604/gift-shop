@@ -3,8 +3,25 @@ import { Container, Row, Col, Card } from "react-bootstrap";
 import PackageCard from "../partials/PackageCard";
 import Pagination from "../partials/Pagination";
 import PackageFilters from "../partials/PackageFilters";
+import usePackageStore from "./../../../store/packageStore";
+import { useEffect } from "react";
 
-const Packages = ({ packages }) => {
+const Packages = () => {
+	const { packages, Loading, error, fetchPackages } = usePackageStore();
+
+	useEffect(() => {
+		fetchPackages();
+	}, []);
+
+	if (Loading) {
+		return <div>Loading...</div>;
+	}
+
+	if (error) {
+		return <div>Error: {error.message}</div>;
+	}
+
+	if (!packages) return <div>No packages found.</div>;
 	return (
 		<div>
 			<Container fluid className="packages-container mt-3 text-center p-2">

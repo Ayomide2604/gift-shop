@@ -58,16 +58,10 @@ function App() {
 		<div className="app-container pt-5">
 			<Header />
 			<Routes>
-				<Route
-					path="/"
-					element={<Home categories={categories} packages={packages} />}
-				/>
-				<Route
-					path="/categories"
-					element={<CategoryList categories={categories} />}
-				/>
+				<Route path="/" element={<Home />} />
+				<Route path="/categories" element={<CategoryList />} />
 				<Route path="/categories/:id" element={<CategoryDetail />} />
-				<Route path="/packages" element={<PackageList packages={packages} />} />
+				<Route path="/packages" element={<PackageList />} />
 				<Route path="/packages/:id" element={<PackageDetail />} />
 				<Route path="/contact" element={<Contact />} />
 				<Route path="/login" element={<Login />} />
