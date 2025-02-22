@@ -53,6 +53,9 @@ const Header = () => {
 						<Nav.Link as={NavLink} to="/signup">
 							Signup
 						</Nav.Link>
+						<Nav.Link as={NavLink} to="/signup">
+						<i class="bi bi-cart-check-fill"></i>
+						</Nav.Link>
 					</Nav>
 				</Navbar.Collapse>
 			</Container>
