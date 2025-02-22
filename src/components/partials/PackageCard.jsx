@@ -6,7 +6,7 @@ const PackageCard = ({ gift }) => {
 		<>
 			<Col lg={4} sm={12} md={6} className="mb-3">
 				<Card>
-					<Card.Img src={gift.image} />
+					<Card.Img src={gift.image_url} />
 					<Card.Body>
 						<Card.Title>{gift.title}</Card.Title>
 						<Card.Text>{gift.description}</Card.Text>

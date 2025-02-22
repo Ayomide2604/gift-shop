@@ -14,60 +14,11 @@ import PackageDetail from "./components/packages/PackageDetail";
 import Cart from "./components/cart/Cart";
 
 import { useEffect, useState } from "react";
-import { getCategories } from "./../api/apiServices";
-
-const packages = [
-	{
-		title: "Package 1",
-		price: "₦100,000",
-		description:
-			"Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quos.",
-		image:
-			"https://mandilax.com/wp-content/uploads/2020/01/11991075086_856659551-1.jpg",
-	},
-	{
-		title: "Package 2",
-		price: "₦200,000",
-		description:
-			"Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quos.",
-		image:
-			"https://m.media-amazon.com/images/I/71ZKWDhv-TL._AC_UF1000,1000_QL80_.jpg",
-	},
-	{
-		title: "Package 3",
-		price: "₦300,000",
-		description:
-			"Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quos.",
-		image:
-			"https://kp-pharma.ams3.digitaloceanspaces.com/J2XRk6e68R5FPP1qgxJKVHAIA9v8ijypOs8mTJYR.jpg",
-	},
-	{
-		title: "Package 4",
-		price: "₦400,000",
-		description:
-			"Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quos.",
-		image: "https://i.ebayimg.com/images/g/NcUAAOSwvaVi1pCN/s-l1200.png",
-	},
-	{
-		title: "Package 5",
-		price: "₦500,000",
-		description:
-			"Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quos.",
-		image:
-			"https://www.petalsfloristonline.co.uk/upload/mt/pf77/products/Interflora/lg_null-ruby-kisses-anniversary-gift-set.jpg",
-	},
-	{
-		title: "Package 6",
-		price: "₦600,000",
-		description:
-			"Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quos.",
-		image:
-			"https://a-homehousing.org/wp-content/uploads/2020/01/ValentinesSugar_Free_ValSKU_8161332.jpg",
-	},
-];
+import { getCategories, getPackages } from "./../api/apiServices";
 
 function App() {
 	const [categories, setCategories] = useState([]);
+	const [packages, setPackages] = useState([]);
 	const [error, setError] = useState(null);
 	const [loading, setLoading] = useState(true);
 
@@ -85,6 +36,14 @@ function App() {
 			}
 		};
 		fetchCategories();
+	}, []);
+
+	useEffect(() => {
+		const fetchPackages = async () => {
+			const packages = await getPackages();
+			setPackages(packages);
+		};
+		fetchPackages();
 	}, []);
 
 	if (loading) {
