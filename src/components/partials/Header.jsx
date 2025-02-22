@@ -4,6 +4,8 @@ import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import NavDropdown from "react-bootstrap/NavDropdown";
 import { Link } from "react-router-dom";
+import { BsCart4 } from "react-icons/bs";
+
 import "./partials.css";
 
 const Header = () => {
@@ -54,7 +56,7 @@ const Header = () => {
 							Signup
 						</Nav.Link>
 						<Nav.Link as={Link} to="/cart">
-							<i class="bi bi-cart-check-fill"></i>
+						<BsCart4/>
 						</Nav.Link>
 					</Nav>
 				</Navbar.Collapse>
@@ -64,3 +66,5 @@ const Header = () => {
 };
 
 export default Header;
+
+
