@@ -8,6 +8,7 @@ const Home = ({ categories }) => {
 	return (
 		<Container fluid className="home-container">
 			<Hero />
+
 			<LatestCategories categories={categories} />
 			<Info />
 			<Newsletter />
