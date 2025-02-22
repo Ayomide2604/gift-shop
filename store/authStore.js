@@ -3,66 +3,80 @@ import axios from "axios";
 
 const VITE_API_URL = import.meta.env.VITE_API_URL;
 
-//  Create Zustand Store
 const useAuthStore = create((set) => ({
-	user: null,
-	token: localStorage.getItem("token") || null,
-	refreshToken: localStorage.getItem("refreshToken") || null,
+	user: JSON.parse(localStorage.getItem("user")) || null,
+	accessToken: localStorage.getItem("access") || null,
+	refreshToken: localStorage.getItem("refresh") || null,
+	isAuthenticated: !!localStorage.getItem("access"),
 
-	login: async ({ email, password }) => {
+	// Login function
+	login: async (email, password) => {
 		try {
 			const response = await axios.post(`${VITE_API_URL}/auth/jwt/create/`, {
 				email,
 				password,
 			});
 
-			const accessToken = response.data.access;
-			const refreshToken = response.data.refresh;
+			const { access, refresh } = response.data;
 
-			// Store tokens in localStorage
-			localStorage.setItem("token", accessToken);
-			localStorage.setItem("refreshToken", refreshToken);
-			axios.defaults.headers.common["Authorization"] = `Bearer ${accessToken}`;
+			// Save tokens in local storage
+			localStorage.setItem("access", access);
+			localStorage.setItem("refresh", refresh);
 
-			//  Fetch user profile
-			set({ token: accessToken });
-			await useAuthStore.getState().fetchUserProfile();
+			await new Promise((resolve) => setTimeout(resolve, 500));
+
+			// Fetch user details
+			const userResponse = await axios.get(`${VITE_API_URL}/auth/users/me/`, {
+				headers: {
+					Authorization: `Bearer ${access}`,
+				},
+			});
+
+			// Save user details
+			localStorage.setItem("user", JSON.stringify(userResponse.data));
+
+			set({
+				user: userResponse.data,
+				accessToken: access,
+				refreshToken: refresh,
+				isAuthenticated: true,
+			});
+
+			return true; // Indicate successful login
 		} catch (error) {
-			console.error("Login failed:", error);
-			throw error.response?.data || "Invalid credentials";
+			console.error("Login failed:", error.response?.data || error.message);
+			return false; // Indicate failed login
 		}
 	},
 
-	fetchUserProfile: async () => {
+	// Signup function
+	signup: async (username, email, password, first_name, last_name) => {
 		try {
-			const response = await axios.get(`${VITE_API_URL}/auth/users/me/`);
-			set({ user: response.data });
-			localStorage.setItem("user", JSON.stringify(response.data));
+			await axios.post(`${VITE_API_URL}/auth/users/`, {
+				username,
+				email,
+				password,
+				first_name,
+				last_name,
+			});
 		} catch (error) {
-			console.error("Failed to fetch user profile:", error);
-			useAuthStore.getState().logout();
+			console.error("Signup failed:", error.response?.data || error.message);
 		}
 	},
 
+	// Logout function
 	logout: () => {
-		localStorage.removeItem("token");
-		localStorage.removeItem("refreshToken");
+		localStorage.removeItem("access");
+		localStorage.removeItem("refresh");
 		localStorage.removeItem("user");
-		delete axios.defaults.headers.common["Authorization"];
 
-		set({ user: null, token: null, refreshToken: null });
-		window.location.href = "/login";
-	},
-
-	initializeAuth: async () => {
-		const token = localStorage.getItem("token");
-		if (token) {
-			axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
-			await useAuthStore.getState().fetchUserProfile();
-		}
+		set({
+			user: null,
+			accessToken: null,
+			refreshToken: null,
+			isAuthenticated: false,
+		});
 	},
 }));
-
-useAuthStore.getState().initializeAuth();
 
 export default useAuthStore;
