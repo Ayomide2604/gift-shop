@@ -53,7 +53,7 @@ const Header = () => {
 						<Nav.Link as={NavLink} to="/signup">
 							Signup
 						</Nav.Link>
-						<Nav.Link as={NavLink} to="/signup">
+						<Nav.Link as={NavLink} to="/cart">
 						<i class="bi bi-cart-check-fill"></i>
 						</Nav.Link>
 					</Nav>

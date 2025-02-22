@@ -11,7 +11,7 @@ import CategoryList from "./components/categories/CategoryList";
 import CategoryDetail from "./components/categories/CategoryDetail";
 import PackageList from "./components/packages/PackageList";
 import PackageDetail from "./components/packages/PackageDetail";
-
+import Cart from "./components/cart/Cart";
 const packages = [
 	{
 		title: "Package 1",
@@ -123,6 +123,7 @@ function App() {
 				<Route path="/contact" element={<Contact />} />
 				<Route path="/login" element={<Login />} />
 				<Route path="/signup" element={<Signup />} />
+				<Route path="/cart" element={<Cart />} />
 			</Routes>
 			<Footer />
 		</div>
