@@ -9,6 +9,7 @@ import Packages from "./components/packages/Packages";
 import Contact from "./components/contact/Contact";
 import Login from "./components/auth/Login";
 import Signup from "./components/auth/Signup";
+import CategoryDetail from "./components/categories/CategoryDetail";
 
 const packages = [
 	{
@@ -115,6 +116,7 @@ function App() {
 					path="/categories"
 					element={<CategoryList categories={categories} />}
 				/>
+				<Route path="/categories/:id" element={<CategoryDetail />} />
 				<Route path="/packages" element={<Packages packages={packages} />} />
 				<Route path="/contact" element={<Contact />} />
 				<Route path="/login" element={<Login />} />
