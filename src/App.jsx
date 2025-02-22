@@ -15,45 +15,8 @@ import Dashboard from "./components/dashboard/Dashboard";
 import Cart from "./components/cart/Cart";
 
 import { useEffect, useState } from "react";
-import { getCategories, getPackages } from "./../api/apiServices";
 
 function App() {
-	const [categories, setCategories] = useState([]);
-	const [packages, setPackages] = useState([]);
-	const [error, setError] = useState(null);
-	const [loading, setLoading] = useState(true);
-
-	useEffect(() => {
-		const fetchCategories = async () => {
-			try {
-				const categories = await getCategories();
-				setCategories(categories);
-			} catch (error) {
-				setError(error);
-				console.error("Error fetching categories:", error);
-			} finally {
-				setLoading(false);
-			}
-		};
-		fetchCategories();
-	}, []);
-
-	useEffect(() => {
-		const fetchPackages = async () => {
-			const packages = await getPackages();
-			setPackages(packages);
-		};
-		fetchPackages();
-	}, []);
-
-	if (loading) {
-		return <div>Loading...</div>;
-	}
-
-	if (error) {
-		return <div>Error: {error.message}</div>;
-	}
-
 	return (
 		<div className="app-container pt-5">
 			<Header />
