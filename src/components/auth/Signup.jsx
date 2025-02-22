@@ -1,5 +1,5 @@
 import React from "react";
-import { NavLink } from "react-router";
+import { Link } from "react-router-dom";
 import { Form, Button, Container, Card } from "react-bootstrap";
 import "./Auth.css";
 
@@ -33,7 +33,7 @@ const Signup = () => {
 						</Form>
 						<div className="text-center mt-3">
 							<p>
-								Already have an account? <NavLink to="/login">Login</NavLink>
+								Already have an account? <Link to="/login">Login</Link>
 							</p>
 						</div>
 					</Card.Body>
