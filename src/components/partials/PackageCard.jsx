@@ -1,6 +1,7 @@
 import React from "react";
 import { Col, Row, Card, Button } from "react-bootstrap";
 import { Link } from "react-router-dom";
+import Numeral from "react-numeral";
 const PackageCard = ({ gift }) => {
 	return (
 		<>
@@ -10,7 +11,9 @@ const PackageCard = ({ gift }) => {
 					<Card.Body>
 						<Card.Title>{gift.title}</Card.Title>
 						<Card.Text>{gift.description}</Card.Text>
-						<Card.Text>{gift.price}</Card.Text>
+						<Card.Text>
+							₦<Numeral value={gift.price} format={"0,0"} />
+						</Card.Text>
 					</Card.Body>
 					<Card.Footer>
 						<Button variant="primary">
