@@ -5,15 +5,14 @@ import Info from "./Info";
 import Newsletter from "../partials/Newsletter";
 import LatestCategories from "./LatestCategories";
 import LatestPackages from "./LatestPackages";
-const Home = ({ categories, packages }) => {
+
+const Home = () => {
 	return (
 		<Container fluid className="home-container">
 			<Hero />
-			<LatestCategories categories={categories} />
-			<LatestPackages packages={packages} />
-			{/* Info Section */}
+			<LatestCategories />
+			<LatestPackages />
 			<Info />
-			{/* Newsletter Section */}
 			<Newsletter />
 		</Container>
 	);

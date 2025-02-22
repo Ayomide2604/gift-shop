@@ -11,8 +11,9 @@ import CategoryList from "./components/categories/CategoryList";
 import CategoryDetail from "./components/categories/CategoryDetail";
 import PackageList from "./components/packages/PackageList";
 import PackageDetail from "./components/packages/PackageDetail";
-import Cart from "./components/cart/Cart";
 import Dashboard from "./components/dashboard/Dashboard";
+import Cart from "./components/cart/Cart";
+
 import { useEffect, useState } from "react";
 import { getCategories, getPackages } from "./../api/apiServices";
 

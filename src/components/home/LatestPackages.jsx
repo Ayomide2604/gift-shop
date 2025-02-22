@@ -2,7 +2,23 @@ import React from "react";
 import { Container, Row, Col, Button } from "react-bootstrap";
 import PackageCard from "../partials/PackageCard";
 import { Link } from "react-router-dom";
-const LatestPackages = ({ packages }) => {
+import usePackageStore from "./../../../store/packageStore";
+import { useEffect } from "react";
+const LatestPackages = () => {
+	const { packages, Loading, error, fetchPackages } = usePackageStore();
+
+	useEffect(() => {
+		fetchPackages();
+	}, []);
+
+	if (Loading) {
+		return <div>Loading...</div>;
+	}
+
+	if (error) {
+		return <div>Error: {error.message}</div>;
+	}
+
 	return (
 		<>
 			{/* Latest Packages */}
