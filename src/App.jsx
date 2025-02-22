@@ -107,7 +107,10 @@ function App() {
 		<div className="app-container pt-5">
 			<Header />
 			<Routes>
-				<Route path="/" element={<Home categories={categories} />} />
+				<Route
+					path="/"
+					element={<Home categories={categories} packages={packages} />}
+				/>
 				<Route
 					path="/categories"
 					element={<CategoryList categories={categories} />}
