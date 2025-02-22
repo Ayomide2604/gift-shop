@@ -30,8 +30,11 @@ const Packages = () => {
 						<h1>All GiftPackages</h1>
 					</Col>
 				</Row>
+
 				<Row>
-					<PackageFilters />
+					<Col lg={3} sm={12} md={3}>
+						<PackageFilters />
+					</Col>
 					<Col lg={9} sm={12} md={9}>
 						<Row className=" p-5">
 							{packages.map((gift) => (
