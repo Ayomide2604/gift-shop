@@ -8,16 +8,16 @@ const CategoryCard = ({ category }) => {
 				<div className="imageoverlay">
 					<Card.Img
 						variant="top"
-						src={category.image}
+						src={category.image_url}
 						className="category-image"
 					/>
 					<div className="overlay-content">
-						<Card.Title className="overlay-title">{category.title}</Card.Title>
+						<Card.Title className="overlay-title">{category.name}</Card.Title>
 						<Card.Text>{category.description}</Card.Text>
 						<Button
 							variant="primary"
 							as={NavLink}
-							to={`/categories/${category.title}`}
+							to={`/categories/${category.id}`}
 						>
 							Shop Now
 						</Button>

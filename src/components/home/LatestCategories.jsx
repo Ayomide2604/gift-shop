@@ -14,7 +14,7 @@ const LatestCategories = ({ categories }) => {
 				</Row>
 				<Row>
 					{categories.map((category) => (
-						<CategoryCard key={category.title} category={category} />
+						<CategoryCard key={category.id} category={category} />
 					))}
 				</Row>
 				<Row>
