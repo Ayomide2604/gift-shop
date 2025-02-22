@@ -4,6 +4,7 @@ import { Routes, Route } from "react-router-dom";
 import Header from "./components/partials/Header";
 import Footer from "./components/partials/Footer";
 import Home from "./components/home/Home";
+import About from "./components/about/About";
 import Contact from "./components/contact/Contact";
 import Login from "./components/auth/Login";
 import Signup from "./components/auth/Signup";
@@ -21,6 +22,7 @@ function App() {
 			<Header />
 			<Routes>
 				<Route path="/" element={<Home />} />
+				<Route path="/about" element={<About />} />
 				<Route path="/categories" element={<CategoryList />} />
 				<Route path="/categories/:id" element={<CategoryDetail />} />
 				<Route path="/packages" element={<PackageList />} />
