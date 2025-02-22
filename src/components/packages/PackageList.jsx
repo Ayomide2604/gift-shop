@@ -3,6 +3,7 @@ import { Container, Row, Col, Card } from "react-bootstrap";
 import PackageCard from "../partials/PackageCard";
 import Pagination from "../partials/Pagination";
 import PackageFilters from "../partials/PackageFilters";
+
 const Packages = ({ packages }) => {
 	return (
 		<div>

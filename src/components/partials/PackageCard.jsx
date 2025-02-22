@@ -1,5 +1,6 @@
 import React from "react";
-import { Col, Row, Card } from "react-bootstrap";
+import { Col, Row, Card, Button } from "react-bootstrap";
+import { NavLink } from "react-router";
 const PackageCard = ({ gift }) => {
 	return (
 		<>
@@ -11,6 +12,11 @@ const PackageCard = ({ gift }) => {
 						<Card.Text>{gift.description}</Card.Text>
 						<Card.Text>{gift.price}</Card.Text>
 					</Card.Body>
+					<Card.Footer>
+						<Button variant="primary">
+							<NavLink to={`/packages/${gift.title}`}>View Package</NavLink>
+						</Button>
+					</Card.Footer>
 				</Card>
 			</Col>
 		</>

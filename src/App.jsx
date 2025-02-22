@@ -4,12 +4,13 @@ import { Routes, Route } from "react-router";
 import Header from "./components/partials/Header";
 import Footer from "./components/partials/Footer";
 import Home from "./components/home/Home";
-import CategoryList from "./components/categories/CategoryList";
-import Packages from "./components/packages/Packages";
 import Contact from "./components/contact/Contact";
 import Login from "./components/auth/Login";
 import Signup from "./components/auth/Signup";
+import CategoryList from "./components/categories/CategoryList";
 import CategoryDetail from "./components/categories/CategoryDetail";
+import PackageList from "./components/packages/PackageList";
+import PackageDetail from "./components/packages/PackageDetail";
 
 const packages = [
 	{
@@ -117,7 +118,8 @@ function App() {
 					element={<CategoryList categories={categories} />}
 				/>
 				<Route path="/categories/:id" element={<CategoryDetail />} />
-				<Route path="/packages" element={<Packages packages={packages} />} />
+				<Route path="/packages" element={<PackageList packages={packages} />} />
+				<Route path="/packages/:id" element={<PackageDetail />} />
 				<Route path="/contact" element={<Contact />} />
 				<Route path="/login" element={<Login />} />
 				<Route path="/signup" element={<Signup />} />
