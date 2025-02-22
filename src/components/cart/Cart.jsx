@@ -1,25 +1,69 @@
 import React from "react";
+import { Container, Row, Col, Button, Table } from "react-bootstrap";
 
 const Cart = () => {
-	return (
-		<div>
-			Cart Lorem ipsum dolor sit amet consectetur adipisicing elit. Velit ipsa
-			ipsam vero tenetur veritatis, accusantium magnam rem, dolores consequuntur
-			a quod voluptas quia error ea, quos mollitia! Sit optio nihil impedit fuga
-			est iste, esse rem dolores? Voluptate totam vitae, harum sed est dolor!
-			Accusantium, itaque inventore nisi fugiat aliquam dolor. Error accusamus
-			dolor, minima cumque beatae, laboriosam doloremque tenetur quasi, rerum
-			fuga doloribus culpa quidem a ea maxime? Iure praesentium dignissimos
-			harum asperiores amet cum dolorem velit aut fugit iusto in dolorum, esse
-			reiciendis sed obcaecati recusandae ut debitis ipsam eum aliquam,
-			laudantium voluptates a voluptatibus deserunt. Fugit corrupti expedita,
-			non unde omnis officiis voluptas harum voluptatem et iusto sit quae neque
-			nostrum vitae quam asperiores minima quidem velit impedit quos facilis ea.
-			Minus officiis quidem, itaque repudiandae dolores harum possimus vel quas
-			ipsa aut earum commodi tempore placeat fugiat nam reiciendis quia alias
-			maxime corporis deserunt nostrum ducimus.
-		</div>
-	);
+  return (
+    <Container className="py-5">
+      <Row>
+        <Col>
+          <h1 className="text-center mb-4">Shopping Cart</h1>
+        </Col>
+      </Row>
+      <Row>
+        <Col>
+          <Table responsive="sm" bordered hover className="text-center">
+            <thead className="bg-light">
+              <tr>
+                <th>Product</th>
+                <th>Price</th>
+                <th>Quantity</th>
+                <th>Total</th>
+              </tr>
+            </thead>
+            <tbody>
+              {[ // Sample product list
+                {
+                  id: 1,
+                  img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS6U1vL6XuBTGT-JOTv08oDNiT1WPDik_QPzA&s",
+                  price: 200000,
+                },
+                {
+                  id: 2,
+                  img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQOMjt5hRn5oxpe-Yfm5M01euti6_nzyUC0Rw&s",
+                  price: 150000,
+                },
+              ].map((item) => (
+                <tr key={item.id}>
+                  <td className="align-middle">
+                    <img
+                      src={item.img}
+                      alt="product"
+                      className="img-fluid rounded"
+                      style={{ width: "80px", height: "80px", objectFit: "cover" }}
+                    />
+                  </td>
+                  <td className="align-middle">₦ {item.price.toLocaleString()}</td>
+                  <td className="align-middle">
+                    <div className="d-flex justify-content-center align-items-center">
+                      <Button variant="outline-secondary" size="sm">-</Button>
+                      <span className="mx-2">1</span>
+                      <Button variant="outline-secondary" size="sm">+</Button>
+                    </div>
+                  </td>
+                  <td className="align-middle">₦ {item.price.toLocaleString()}</td>
+                </tr>
+              ))}
+            </tbody>
+          </Table>
+        </Col>
+      </Row>
+      <Row className="mt-4">
+        <Col className="text-center">
+          <Button variant="primary" size="lg">Proceed to Checkout</Button>
+        </Col>
+      </Row>
+    </Container>
+  );
 };
 
 export default Cart;
