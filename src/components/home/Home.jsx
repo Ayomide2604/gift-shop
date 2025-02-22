@@ -4,11 +4,11 @@ import Hero from "./Hero";
 import LatestCategories from "./LatestCategories";
 import Info from "./Info";
 import Newsletter from "../partials/Newsletter";
-const Home = () => {
+const Home = ({ categories }) => {
 	return (
 		<Container fluid className="home-container">
 			<Hero />
-			<LatestCategories />
+			<LatestCategories categories={categories} />
 			<Info />
 			<Newsletter />
 		</Container>
