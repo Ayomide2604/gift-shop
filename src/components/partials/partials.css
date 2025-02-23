@@ -95,7 +95,20 @@
 .package-filters {
 	background-color: transparent;
 	margin-top: 50px;
-	margin-left: 60px;
+	margin-left: 50px;
 	position: relative;
-	
+}
+
+@media (max-width: 768px) {
+	.package-filters {
+		margin-top: 30px;
+		margin-left: 30px;
+	}
+}
+
+@media (max-width: 480px) {
+	.package-filters {
+		margin-top: 20px;
+		margin-left: 15px;
+	}
 }
