@@ -78,7 +78,7 @@ const About = () => {
 			<Row className="mt-4">
 				<Col md={12} className="mb-4">
 					<Card className="h-100 shadow-lg border-0">
-						<Card.Body >
+						<Card.Body>
 							<h3> Why Choose Us?</h3>
 							<ul className="list-unstyled">
 								<li>Handpicked, premium-quality gifts</li>
@@ -92,19 +92,6 @@ const About = () => {
 
 				<Container className="mt-4">
 					<Row>
-						<Col md={4} className="mb-4 text-center">
-							<Image
-								src="https://img.freepik.com/free-photo/christmas-new-year-shopping-concept_1258-26071.jpg?uid=R187989283&ga=GA1.1.683011030.1739465736&semt=ais_hybrid"
-								className="side-image"
-								style={{
-									width: "100%",
-									height: "300px",
-									objectFit: "cover",
-									borderRadius: "10px",
-									boxShadow: "0 0 10px 0 rgba(0, 0, 0, 0.1)",
-								}}
-							/>
-						</Col>
 						<Col md={8} className="mb-4">
 							<Card className="h-100 shadow-lg border-0">
 								<Card.Body>
@@ -118,12 +105,26 @@ const About = () => {
 								</Card.Body>
 							</Card>
 						</Col>
+
+						<Col md={4} className="mb-4 text-center">
+							<Image
+								src="https://img.freepik.com/free-photo/christmas-new-year-shopping-concept_1258-26071.jpg?uid=R187989283&ga=GA1.1.683011030.1739465736&semt=ais_hybrid"
+								className="side-image"
+								style={{
+									width: "100%",
+									height: "300px",
+									objectFit: "cover",
+									borderRadius: "10px",
+									boxShadow: "0 0 10px 0 rgba(0, 0, 0, 0.1)",
+								}}
+							/>
+						</Col>
 					</Row>
 				</Container>
 			</Row>
 
 			<Row className="mt-4">
-				<Col md={6} className="mb-4">
+				<Col md={12} lg={12} sm={12} className="mb-4">
 					<Card className="h-100 shadow-lg border-0">
 						<Card.Body>
 							<h3> Get in Touch</h3>
