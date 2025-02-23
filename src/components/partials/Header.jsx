@@ -1,16 +1,23 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Container } from "react-bootstrap";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import { Link } from "react-router-dom";
 import { BsCart4 } from "react-icons/bs";
 import useAuthStore from "./../../../store/authStore";
+import useCartStore from "./../../../store/cartStore";
 
 import "./partials.css";
 
 const Header = () => {
+	const { cart, fetchCart } = useCartStore();
 	const user = useAuthStore((state) => state.user);
 	const logout = useAuthStore((state) => state.logout);
+
+	useEffect(() => {
+		fetchCart();
+	}, [fetchCart]);
+
 	return (
 		<Navbar
 			fixed="top"
@@ -58,11 +65,25 @@ const Header = () => {
 								<Nav.Link as={Link} to="/signup">
 									Signup
 								</Nav.Link>
-								<Nav.Link as={Link} to="/cart">
-									<BsCart4 />
-								</Nav.Link>
 							</>
 						)}
+						<Nav.Link as={Link} to="/cart">
+							<BsCart4 className="cart-icon position-absolute" />
+							{cart && cart.items.length > 0 && (
+								<span
+									className="cart-badge position-absolute top-25 badge rounded-pill bg-primary p-0"
+									style={{
+										top: "10px",
+										right: "10px",
+										height: "30px",
+										width: "30px",
+										fontSize: "10px",
+									}}
+								>
+									{cart.items.reduce((total, item) => total + item.quantity, 0)}
+								</span>
+							)}
+						</Nav.Link>
 					</Nav>
 				</Navbar.Collapse>
 			</Container>
