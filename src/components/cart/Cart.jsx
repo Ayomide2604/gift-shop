@@ -76,7 +76,7 @@ const Cart = () => {
 									<tr key={item.id}>
 										<td className="align-middle">
 											<img
-												src={item.item_data.image_url}
+												src={item.item_data?.image_url}
 												alt="product"
 												className="img-fluid rounded"
 												style={{
@@ -87,7 +87,7 @@ const Cart = () => {
 											/>
 										</td>
 										<td className="align-middle">
-											₦<Numeral value={item.item_data.price} format={"0,0"} />
+											₦<Numeral value={item.item_data?.price} format={"0,0"} />
 										</td>
 										<td className="align-middle">
 											<div className="d-flex justify-content-center align-items-center">
