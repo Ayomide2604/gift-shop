@@ -68,16 +68,19 @@ const Header = () => {
 							</>
 						)}
 						<Nav.Link as={Link} to="/cart">
-							<BsCart4 className="cart-icon position-absolute" />
+							<BsCart4
+								className="cart-icon position-absolute"
+								style={{ fontSize: "20px" }}
+							/>
 							{cart && (
 								<span
-									className="cart-badge position-absolute top-25 badge rounded-pill bg-primary p-0"
+									className="cart-badge position-absolute top-25 badge rounded-pill bg-secondary p-0 d-flex justify-content-center align-items-center"
 									style={{
-										top: "10px",
-										right: "10px",
-										height: "30px",
-										width: "30px",
-										fontSize: "12px",
+										top: "20px",
+										right: "20px",
+										height: "20px",
+										width: "20px",
+										fontSize: "10px",
 									}}
 								>
 									{cart.items.length > 0
