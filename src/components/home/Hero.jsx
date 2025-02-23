@@ -13,7 +13,7 @@ const Hero = () => {
 			id: 2,
 			title: "Personalized Gifts",
 			description: "Create personalized gifts that are truly one-of-a-kind.",
-			imgSrc: "/home/hero3.png",
+			imgSrc: "/home/hero2.png",
 		},
 	];
 
