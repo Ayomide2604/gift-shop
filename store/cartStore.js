@@ -7,6 +7,7 @@ const useCartStore = create((set, get) => ({
 	cart: null,
 	loading: false,
 	error: null,
+	total_cart: 0,
 
 	// Fetch or Create Cart (Only if authenticated)
 	fetchCart: async () => {
@@ -33,7 +34,7 @@ const useCartStore = create((set, get) => ({
 	},
 
 	// Add item to cart (Product or Package)
-	addToCart: async (contentType, objectId, quantity) => {
+	addToCart: async (contentType, objectId) => {
 		const { isAuthenticated, accessToken } = useAuthStore.getState();
 		const { cart } = get();
 
@@ -51,15 +52,19 @@ const useCartStore = create((set, get) => ({
 
 		try {
 			const response = await axios.post(
-				`${VITE_API_URL}/carts/${cart.id}/items/`,
-				{ content_type: contentType, object_id: objectId, quantity },
+				`${VITE_API_URL}/carts/${cart.id}/items/add_item/`,
+				{
+					content_type: contentType,
+					object_id: objectId,
+					quantity: 1,
+					cart: cart.id,
+				},
 				{
 					headers: {
 						Authorization: `Bearer ${accessToken}`,
 					},
 				}
 			);
-
 			set((state) => ({
 				cart: { ...state.cart, items: [...state.cart.items, response.data] },
 				loading: false,
@@ -70,6 +75,7 @@ const useCartStore = create((set, get) => ({
 				loading: false,
 			});
 		}
+		window.location.reload();
 	},
 
 	// Remove item from cart (Only if authenticated)

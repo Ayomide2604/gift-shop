@@ -16,7 +16,7 @@ const Header = () => {
 
 	useEffect(() => {
 		fetchCart();
-	}, [fetchCart]);
+	}, []);
 
 	return (
 		<Navbar

@@ -7,11 +7,7 @@ import Numeral from "react-numeral";
 import { Link } from "react-router-dom";
 const Cart = () => {
 	const isAuthenticated = useAuthStore((state) => state.isAuthenticated);
-	const { cart, fetchCart, loading, error } = useCartStore();
-
-	useEffect(() => {
-		fetchCart();
-	}, [fetchCart]);
+	const { cart, loading, error } = useCartStore();
 
 	if (!isAuthenticated) {
 		return (
@@ -110,7 +106,7 @@ const Cart = () => {
 										Total:
 									</td>
 									<td>
-										₦<Numeral value={cart.total_price} format={"0,0"} />
+										₦<Numeral value={cart.total_cart} format={"0,0"} />
 									</td>
 								</tr>
 							</tbody>

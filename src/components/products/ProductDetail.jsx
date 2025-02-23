@@ -1,10 +1,16 @@
 import { useParams } from "react-router-dom";
 import useProductStore from "./../../../store/productStore";
 import { useEffect } from "react";
-import { Container, Row, Col } from "react-bootstrap";
+import { Container, Row, Col, Button } from "react-bootstrap";
+import useCartStore from "../../../store/cartStore";
 const ProductDetail = () => {
 	const { id } = useParams();
 	const { product, Loading, error, fetchProductById } = useProductStore();
+	const addToCart = useCartStore((state) => state.addToCart);
+
+	const handleAddToCart = () => {
+		addToCart(product.get_content_type_id, product.id);
+	};
 
 	useEffect(() => {
 		fetchProductById(id);
@@ -39,6 +45,7 @@ const ProductDetail = () => {
 					<h1>{product.title}</h1>
 					<p>{product.description}</p>
 					<p>{product.price}</p>
+					<Button onClick={handleAddToCart}>Add to Cart</Button>
 				</Col>
 			</Row>
 		</Container>
