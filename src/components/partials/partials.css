@@ -91,3 +91,11 @@
 .overlay-content button:hover {
 	background-color: #0056b3;
 }
+
+.package-filters {
+	background-color: transparent;
+	margin-top: 50px;
+	margin-left: 60px;
+	position: relative;
+	
+}

@@ -1,54 +1,26 @@
-import React from "react";
-import { Col } from "react-bootstrap";
+import React, { useEffect } from "react";
+import { Col, Card } from "react-bootstrap";
+import useCategoryStore from "../../../store/categoryStore";
+
 const PackageFilters = () => {
+	const { categories, fetchCategories } = useCategoryStore();
+
+	useEffect(() => {
+		fetchCategories();
+	}, []);
+
 	return (
-		<Col lg={3} sm={12} md={3} className="p-3">
-			<p className="">Filters</p>
-			<div className="accordion accordion-flush p-3" id="accordionFlushExample">
-				<div className="accordion-item">
-					<h2 className="accordion-header">
-						<button
-							className="accordion-button collapsed"
-							type="button"
-							data-bs-toggle="collapse"
-							data-bs-target="#flush-collapseOne"
-							aria-expanded="false"
-							aria-controls="flush-collapseOne"
-						>
-							Category
-						</button>
-					</h2>
-					<div
-						id="flush-collapseOne"
-						className="accordion-collapse collapse"
-						data-bs-parent="#accordionFlushExample"
-					>
-						<div className="accordion-body">Placeholder</div>
-					</div>
-				</div>
-				<div className="accordion-item">
-					<h2 className="accordion-header">
-						<button
-							className="accordion-button collapsed"
-							type="button"
-							data-bs-toggle="collapse"
-							data-bs-target="#flush-collapseTwo"
-							aria-expanded="false"
-							aria-controls="flush-collapseTwo"
-						>
-							Price
-						</button>
-					</h2>
-					<div
-						id="flush-collapseTwo"
-						className="accordion-collapse collapse"
-						data-bs-parent="#accordionFlushExample"
-					>
-						<div className="accordion-body">Placeholder</div>
-					</div>
-				</div>
-			</div>
-		</Col>
+		<Card className="package-filters text-black text-center">
+			<Card.Header className="fw-bold">
+				Filters <i className="bi bi-funnel-fill"></i>
+			</Card.Header>
+			<Card.Body className="text-black">
+				<Card.Text>All Categories</Card.Text>
+				{categories.map((category) => (
+					<Card.Text key={category.id}>{category.name}</Card.Text>
+				))}
+			</Card.Body>
+		</Card>
 	);
 };
 
