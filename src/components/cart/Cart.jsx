@@ -1,15 +1,39 @@
 import React from "react";
 import { Container, Row, Col, Button, Table } from "react-bootstrap";
 import useCartStore from "../../../store/cartStore";
+import useAuthStore from "../../../store/authStore";
 import { useEffect } from "react";
 import Numeral from "react-numeral";
-
+import { Link } from "react-router-dom";
 const Cart = () => {
+	const isAuthenticated = useAuthStore((state) => state.isAuthenticated);
 	const { cart, fetchCart, loading, error } = useCartStore();
 
 	useEffect(() => {
 		fetchCart();
 	}, [fetchCart]);
+
+	if (!isAuthenticated) {
+		return (
+			<Container className="py-5">
+				<Row>
+					<Col>
+						<h1 className="text-center mb-4">Shopping Cart</h1>
+					</Col>
+				</Row>
+				<Row>
+					<Col>
+						<div className="text-center">
+							<Button as={Link} to="/login" className="btn btn-primary">
+								Please log in to view your cart.
+							</Button>
+						</div>
+					</Col>
+				</Row>
+			</Container>
+		);
+	}
+
 	if (!cart) {
 		return <div>Loading...</div>;
 	}
