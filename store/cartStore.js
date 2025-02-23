@@ -132,7 +132,7 @@ const useCartStore = create((set, get) => ({
 
 		set({ loading: true });
 		try {
-			await axios.delete(`${VITE_API_URL}/carts/${cart.id}/`, {
+			await axios.delete(`${VITE_API_URL}/carts/${cart.id}/clear/`, {
 				headers: {
 					Authorization: `Bearer ${accessToken}`,
 				},
