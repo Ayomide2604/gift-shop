@@ -42,10 +42,10 @@ const useAuthStore = create((set) => ({
 				isAuthenticated: true,
 			});
 
-			return true; // Indicate successful login
+			return true;
 		} catch (error) {
 			console.error("Login failed:", error.response?.data || error.message);
-			return false; // Indicate failed login
+			return false;
 		}
 	},
 

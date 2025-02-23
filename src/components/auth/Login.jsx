@@ -4,10 +4,11 @@ import { Form, Button, Container, Card } from "react-bootstrap";
 import { NavLink } from "react-router-dom";
 import useAuthStore from "./../../../store/authStore";
 import "./Auth.css";
-
+import useCartStore from "../../../store/cartStore";
 const Login = () => {
 	const navigate = useNavigate();
 	const { login, isAuthenticated, user } = useAuthStore();
+	const { fetchCart } = useCartStore();
 	const [email, setEmail] = useState("");
 	const [password, setPassword] = useState("");
 
@@ -22,7 +23,8 @@ const Login = () => {
 		const success = await login(email, password);
 
 		if (success) {
-			navigate("/dashboard"); // Redirect to dashboard
+			navigate(-1) || navigate("/dashboard");
+			fetchCart();
 		} else {
 			setError("Invalid email or password.");
 		}
@@ -32,7 +34,6 @@ const Login = () => {
 
 	useEffect(() => {
 		if (isAuthenticated) {
-			navigate("/dashboard");
 		}
 	}, [isAuthenticated, navigate]);
 
