@@ -1,51 +1,61 @@
+import React, { useEffect } from "react";
+import { Container, Row, Col, Button, Card } from "react-bootstrap";
 import { useParams } from "react-router-dom";
 import useProductStore from "./../../../store/productStore";
-import { useEffect } from "react";
-import { Container, Row, Col, Button } from "react-bootstrap";
 import useCartStore from "../../../store/cartStore";
+import Numeral from "react-numeral";
+
 const ProductDetail = () => {
-	const { id } = useParams();
 	const { product, Loading, error, fetchProductById } = useProductStore();
-	const addToCart = useCartStore((state) => state.addToCart);
+	const { id } = useParams();
+	const { addToCart } = useCartStore();
 
 	const handleAddToCart = () => {
-		addToCart(product.get_content_type_id, product.id);
+		addToCart(gift.get_content_type_id, gift.id);
 	};
-
 	useEffect(() => {
 		fetchProductById(id);
-	}, [id]);
+	}, [id, fetchProductById]);
 
 	if (Loading) {
-		return <div>Loading...</div>;
+		return <div>Loading product details...</div>;
 	}
 
 	if (error) {
 		return <div>Error: {error.message}</div>;
 	}
+
 	if (!product) return <div>No product found.</div>;
 
 	return (
 		<Container fluid className="package-detail-container mt-5">
 			<Row>
-				<Col lg={12} sm={12} md={12} className="text-center">
-					<h1>Product Detail</h1>
+				<Col lg={4} sm={12} md={4} xs={12} className="px-5 mb-3">
+					<Card>
+						<Card.Img
+							src={product.image_url}
+							alt={product.name}
+							className="category-detail-image "
+							style={{ objectFit: "contain" }}
+						/>
+					</Card>
 				</Col>
-			</Row>
-			<Row>
-				<Col lg={6} sm={12} md={6} xs={12} className="text-center">
-					<img
-						src={product.image_url}
-						alt={product.title}
-						className="category-detail-image p-5"
-						style={{ objectFit: "cover", height: "100%", width: "100%" }}
-					/>
-				</Col>
-				<Col lg={6} sm={12} md={6} xs={12} className="text-center">
-					<h1>{product.title}</h1>
-					<p>{product.description}</p>
-					<p>{product.price}</p>
-					<Button onClick={handleAddToCart}>Add to Cart</Button>
+				<Col lg={8} sm={12} md={8} xs={12} className="">
+					<div className="package-detail-content p-5">
+						<h3>{product.name}</h3>
+						<p>
+							Lorem ipsum dolor sit amet consectetur adipisicing elit. Iusto at
+							corrupti vitae facilis vel illo ducimus, aliquid eaque soluta enim
+							obcaecati praesentium nisi numquam nemo, esse provident? Sint
+							accusamus voluptatum reiciendis cumque quidem harum.
+						</p>
+						<p>
+							₦<Numeral value={product.price} format={"0,0"} />
+						</p>
+						<Button variant="primary" onClick={handleAddToCart}>
+							Add to Cart
+						</Button>
+					</div>
 				</Col>
 			</Row>
 		</Container>

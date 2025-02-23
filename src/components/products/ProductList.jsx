@@ -25,9 +25,9 @@ const ProductList = () => {
 	return (
 		<div>
 			<Container fluid className="packages-container mt-3 text-center p-2">
-				<Row>
+				<Row className="mt-5">
 					<Col lg={12} sm={12} md={12}>
-						<h1>All Products</h1>
+						<h2>All Products</h2>
 					</Col>
 				</Row>
 				<Row>
