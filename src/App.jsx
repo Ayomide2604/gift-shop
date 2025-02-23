@@ -17,6 +17,7 @@ import ProductDetail from "./components/products/ProductDetail";
 import Dashboard from "./components/dashboard/Dashboard";
 import Cart from "./components/cart/Cart";
 import PageNotFound from "./components/partials/PageNotFound";
+import ProtectedRoute from './../store/ProtectedRoutes';
 
 function App() {
 	return (
@@ -34,9 +35,14 @@ function App() {
 				<Route path="/contact" element={<Contact />} />
 				<Route path="/login" element={<Login />} />
 				<Route path="/signup" element={<Signup />} />
-				<Route path="/dashboard" element={<Dashboard />} />
 				<Route path="/cart" element={<Cart />} />
 				<Route path="*" element={<PageNotFound />} />
+
+				{/* Protected Routes */}
+				<Route element={<ProtectedRoute />}>
+					<Route path="/dashboard" element={<Dashboard />} />
+					<Route path="/cart" element={<Cart />} />
+				</Route>
 			</Routes>
 			<Footer />
 		</div>

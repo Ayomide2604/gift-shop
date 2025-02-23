@@ -44,7 +44,7 @@
 }
 
 .btn.btn-primary {
-	background-color: #5243C2;
+	background-color: #5243c2;
 	color: #fff;
 	border: none;
 }
@@ -53,4 +53,12 @@
 	background-color: #1053ef;
 	color: #fff;
 	border: none;
+}
+
+.btn.btn-outline-dark {
+	color: black;
+}
+
+.btn.btn-outline-dark:hover {
+	color: white;
 }

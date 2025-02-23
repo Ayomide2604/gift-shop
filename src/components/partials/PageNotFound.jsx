@@ -1,5 +1,5 @@
 import React from "react";
-import { Container, Row, Col } from "react-bootstrap";
+import { Container, Row, Col, Button } from "react-bootstrap";
 import { Link } from "react-router-dom";
 const PageNotFound = () => {
 	return (
@@ -14,6 +14,9 @@ const PageNotFound = () => {
 						style={{ width: "50%", height: "auto" }}
 					/>
 					<p>The page you are looking for does not exist.</p>
+					<Button as={Link} to="/" variant="outline-dark">
+						Go to HomePage
+					</Button>
 				</Col>
 			</Row>
 		</Container>
