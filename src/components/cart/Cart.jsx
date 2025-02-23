@@ -6,6 +6,7 @@ import Numeral from "react-numeral";
 
 const Cart = () => {
 	const { cart, fetchCart, loading, error } = useCartStore();
+
 	useEffect(() => {
 		fetchCart();
 	}, [fetchCart]);
@@ -80,6 +81,14 @@ const Cart = () => {
 										</td>
 									</tr>
 								))}
+								<tr>
+									<td colSpan="3" className="text-end">
+										Total:
+									</td>
+									<td>
+										₦<Numeral value={cart.total_cart} format={"0,0"} />
+									</td>
+								</tr>
 							</tbody>
 						</Table>
 					</Col>
