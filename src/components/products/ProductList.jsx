@@ -3,6 +3,7 @@ import useProductStore from "./../../../store/productStore";
 import ProductCard from "../partials/ProductCard";
 import { Container, Row, Col } from "react-bootstrap";
 import Pagination from "../partials/Pagination";
+import ProductFilters from "./ProductFilters";
 
 const ProductList = () => {
 	const { products, Loading, error, fetchProducts } = useProductStore();
@@ -31,7 +32,7 @@ const ProductList = () => {
 				</Row>
 				<Row>
 					<Col lg={3} sm={12} md={3}>
-						Filters
+						<ProductFilters />
 					</Col>
 					<Col lg={9} sm={12} md={9}>
 						<Row className=" p-5">

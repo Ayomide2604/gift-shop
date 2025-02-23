@@ -2,7 +2,7 @@ import React from "react";
 import { Container, Row, Col, Card } from "react-bootstrap";
 import PackageCard from "../partials/PackageCard";
 import Pagination from "../partials/Pagination";
-import PackageFilters from "../partials/PackageFilters";
+import PackageFilters from "./PackageFilters";
 import usePackageStore from "./../../../store/packageStore";
 import { useEffect } from "react";
 
@@ -26,7 +26,7 @@ const Packages = () => {
 		<div>
 			<Container fluid className="packages-container mt-3 text-center p-2">
 				<Row>
-					<Col lg={12} sm={12} md={12} className="mt-5 " >
+					<Col lg={12} sm={12} md={12} className="mt-5 ">
 						{/* <h2>All Gift Packages</h2> */}
 					</Col>
 				</Row>
