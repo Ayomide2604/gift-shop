@@ -7,8 +7,7 @@ import Numeral from "react-numeral";
 import { Link } from "react-router-dom";
 const Cart = () => {
 	const isAuthenticated = useAuthStore((state) => state.isAuthenticated);
-	const { cart, fetchCart, loading, error, cartItems, totalPrice } =
-		useCartStore();
+	const { cart, fetchCart, loading, error } = useCartStore();
 
 	useEffect(() => {
 		fetchCart();
@@ -73,7 +72,7 @@ const Cart = () => {
 								</tr>
 							</thead>
 							<tbody>
-								{cartItems.map((item) => (
+								{cart.items.map((item) => (
 									<tr key={item.id}>
 										<td className="align-middle">
 											<img
@@ -111,7 +110,7 @@ const Cart = () => {
 										Total:
 									</td>
 									<td>
-										₦<Numeral value={totalPrice} format={"0,0"} />
+										₦<Numeral value={cart.total_price} format={"0,0"} />
 									</td>
 								</tr>
 							</tbody>
