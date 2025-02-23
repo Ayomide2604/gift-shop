@@ -1,5 +1,5 @@
 .app-container {
-	font-family: Verdana, Geneva, Tahoma, sans-serif;
+	font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
 }
 
 .app-container {
@@ -32,6 +32,16 @@
 		font-weight: 400;
 		line-height: 28px;
 	}
+
+	a {
+		text-decoration: none;
+		color: #000;
+	}
+
+	a:hover {
+		color: #000;
+	}
+}
 }
 
 .btn.btn-primary {
@@ -45,4 +55,3 @@
 	color: #fff;
 	border: none;
 }
-
