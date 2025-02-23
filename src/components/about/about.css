@@ -6,3 +6,22 @@
 .card:hover {
 	transform: scale(1.03);
 }
+
+.owner-image {
+	width: 100%;
+	max-width: 200px;
+	height: auto;
+	margin: 0 auto;
+	transition: transform 0.3s ease-in-out;
+}
+
+.owner-image:hover {
+	transform: scale(1.05);
+}
+
+// Add media queries for better responsiveness if needed
+@media (max-width: 768px) {
+	.card {
+		margin-bottom: 20px;
+	}
+}
