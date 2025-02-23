@@ -8,7 +8,6 @@ import useCartStore from "../../../store/cartStore";
 const Login = () => {
 	const navigate = useNavigate();
 	const { login, isAuthenticated, user } = useAuthStore();
-	const { fetchCart } = useCartStore();
 	const [email, setEmail] = useState("");
 	const [password, setPassword] = useState("");
 
@@ -24,19 +23,12 @@ const Login = () => {
 
 		if (success) {
 			navigate(-1) || navigate("/dashboard");
-			fetchCart();
 		} else {
 			setError("Invalid email or password.");
 		}
 
 		setLoading(false);
 	};
-
-	useEffect(() => {
-		if (isAuthenticated) {
-			navigate(-1) || navigate("/dashboard");
-		}
-	}, [isAuthenticated, navigate]);
 
 	return (
 		<div>
