@@ -69,7 +69,7 @@ const Header = () => {
 						)}
 						<Nav.Link as={Link} to="/cart">
 							<BsCart4 className="cart-icon position-absolute" />
-							{cart && cart.items.length > 0 && (
+							{cart && (
 								<span
 									className="cart-badge position-absolute top-25 badge rounded-pill bg-primary p-0"
 									style={{
@@ -77,10 +77,15 @@ const Header = () => {
 										right: "10px",
 										height: "30px",
 										width: "30px",
-										fontSize: "10px",
+										fontSize: "12px",
 									}}
 								>
-									{cart.items.reduce((total, item) => total + item.quantity, 0)}
+									{cart.items.length > 0
+										? cart.items.reduce(
+												(total, item) => total + item.quantity,
+												0
+										  )
+										: 0}
 								</span>
 							)}
 						</Nav.Link>
