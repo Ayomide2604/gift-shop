@@ -7,19 +7,13 @@ const Hero = () => {
 			title: "Amazing Gift Ideas",
 			description:
 				"Discover a wide range of unique and personalized gift ideas for any occasion.",
-			imgSrc: "/home/hero1.png",
+			imgSrc: "/home/hero.jpg",
 		},
 		{
 			id: 2,
 			title: "Personalized Gifts",
 			description: "Create personalized gifts that are truly one-of-a-kind.",
-			imgSrc: "/home/hero2.png",
-		},
-		{
-			id: 3,
-			title: "Unique and Personalized Gifts",
-			description: "	",
-			imgSrc: "/home/hero3.png",
+			imgSrc: "/home/hero1.png",
 		},
 	];
 
@@ -47,7 +41,7 @@ const Hero = () => {
 									style={{
 										width: "100%",
 										height: "100%",
-										objectFit: "contain",
+										objectFit: "cover",
 									}}
 								/>
 							</Col>
