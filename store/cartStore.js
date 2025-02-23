@@ -146,6 +146,96 @@ const useCartStore = create((set, get) => ({
 			});
 		}
 	},
+
+	increaseQuantity: async (itemId) => {
+		const { isAuthenticated, accessToken } = useAuthStore.getState();
+		const { cart } = get();
+
+		if (!isAuthenticated) {
+			set({ error: "Please log in to increase quantity." });
+			return;
+		}
+
+		if (!cart) {
+			set({ error: "Cart not found" });
+			return;
+		}
+
+		set({ loading: true });
+		try {
+			await axios.post(
+				`${VITE_API_URL}/carts/${cart.id}/items/${itemId}/increase_quantity/`,
+				{},
+				{
+					headers: {
+						Authorization: `Bearer ${accessToken}`,
+					},
+				}
+			);
+
+			set((state) => ({
+				cart: {
+					...state.cart,
+					items: state.cart.items.map((item) =>
+						item.id === itemId ? { ...item, quantity: item.quantity + 1 } : item
+					),
+				},
+				loading: false,
+			}));
+		} catch (error) {
+			set({
+				error: error.response?.data || "Failed to increase quantity",
+				loading: false,
+			});
+		}
+	},
+
+	decreaseQuantity: async (itemId) => {
+		const { isAuthenticated, accessToken } = useAuthStore.getState();
+		const { cart } = get();
+
+		if (!isAuthenticated) {
+			set({ error: "Please log in to decrease quantity." });
+			return;
+		}
+
+		if (!cart) {
+			set({ error: "Cart not found" });
+			return;
+		}
+
+		set({ loading: true });
+		try {
+			await axios.post(
+				`${VITE_API_URL}/carts/${cart.id}/items/${itemId}/decrease_quantity/`,
+				{},
+				{
+					headers: {
+						Authorization: `Bearer ${accessToken}`,
+					},
+				}
+			);
+
+			set((state) => ({
+				cart: {
+					...state.cart,
+					items: state.cart.items
+						.map((item) =>
+							item.id === itemId
+								? { ...item, quantity: item.quantity - 1 }
+								: item
+						)
+						.filter((item) => item.quantity > 0),
+				},
+				loading: false,
+			}));
+		} catch (error) {
+			set({
+				error: error.response?.data || "Failed to decrease quantity",
+				loading: false,
+			});
+		}
+	},
 }));
 
 export default useCartStore;

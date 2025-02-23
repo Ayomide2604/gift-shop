@@ -8,16 +8,34 @@ import { Link } from "react-router-dom";
 const Cart = () => {
 	const isAuthenticated = useAuthStore((state) => state.isAuthenticated);
 	const navigate = useNavigate();
-	const { cart, loading, error, removeFromCart, clearCart } = useCartStore();
+	const {
+		cart,
+		loading,
+		error,
+		removeFromCart,
+		clearCart,
+		increaseQuantity,
+		decreaseQuantity,
+	} = useCartStore();
+
+	const handleIncreaseQuantity = (itemId) => {
+		increaseQuantity(itemId);
+		navigate("/cart");
+	};
+
+	const handleDecreaseQuantity = (itemId) => {
+		decreaseQuantity(itemId);
+		navigate("/cart");
+	};
 
 	const handleClearCart = () => {
 		clearCart();
-		window.location.reload();
+		navigate("/cart");
 	};
 
 	const handleRemoveFromCart = (itemId) => {
 		removeFromCart(itemId);
-		window.location.reload();
+		navigate("/cart");
 	};
 
 	if (!isAuthenticated) {
@@ -104,11 +122,19 @@ const Cart = () => {
 										</td>
 										<td className="align-middle">
 											<div className="d-flex justify-content-center align-items-center">
-												<Button variant="outline-secondary" size="sm">
+												<Button
+													variant="outline-secondary"
+													size="sm"
+													onClick={() => handleDecreaseQuantity(item.id)}
+												>
 													-
 												</Button>
 												<span className="mx-2">{item.quantity}</span>
-												<Button variant="outline-secondary" size="sm">
+												<Button
+													variant="outline-secondary"
+													size="sm"
+													onClick={() => handleIncreaseQuantity(item.id)}
+												>
 													+
 												</Button>
 											</div>
