@@ -9,9 +9,10 @@ const About = () => {
 				<Col>
 					<h1 className="mb-4">About Us</h1>
 					<p className="lead">
-						Welcome to <strong>Gift Shop</strong>, your go-to destination for
-						the perfect gifts for every occasion. We believe that every gift
-						should be meaningful, unique, and bring joy to the recipient.
+						Welcome to <strong>Gift Shop</strong>, your ultimate destination for
+						finding the perfect gifts that speak from the heart. We believe that
+						every gift should tell a story, be unique, and bring joy to both the
+						giver and the receiver.
 					</p>
 				</Col>
 			</Row>
@@ -23,10 +24,12 @@ const About = () => {
 							<Card.Body>
 								<h3>Meet the Owner</h3>
 								<p>
-									Our founder, [Owner's Name], has always been passionate about
-									creating memorable experiences through thoughtful gifts. With
-									a background in [relevant background], [Owner's Name] brings a
-									unique perspective to the art of gifting.
+									Our founder, [Owner's Name], has always been driven by a
+									passion for creating unforgettable experiences through
+									thoughtful gifts. With a background in [relevant background],
+									[Owner's Name] brings a unique perspective to the art of
+									gifting, ensuring that every item in our collection is
+									handpicked with love and care.
 								</p>
 							</Card.Body>
 						</Card>
@@ -65,9 +68,11 @@ const About = () => {
 							<Card.Body>
 								<h3>Our Mission</h3>
 								<p>
-									At Gift Haven, our mission is to make gifting easy, special,
-									and memorable. We curate high-quality gifts that bring
-									happiness to both the giver and receiver.
+									At Gift Shop, our mission is to transform the art of gifting
+									into a seamless and joyful experience. We meticulously curate
+									high-quality gifts that are designed to create lasting
+									memories and bring happiness to both the giver and the
+									receiver.
 								</p>
 							</Card.Body>
 						</Card>
@@ -79,12 +84,12 @@ const About = () => {
 				<Col md={12} className="mb-4">
 					<Card className="h-100 shadow-lg border-0">
 						<Card.Body>
-							<h3> Why Choose Us?</h3>
+							<h3>Why Choose Us?</h3>
 							<ul className="list-unstyled">
-								<li>Handpicked, premium-quality gifts</li>
-								<li> Fast & reliable delivery</li>
-								<li> Personalized gift options</li>
-								<li> Exceptional customer service</li>
+								<li>Handpicked, premium-quality gifts that stand out</li>
+								<li>Fast & reliable delivery to ensure timely surprises</li>
+								<li>Personalized gift options to add a personal touch</li>
+								<li>Exceptional customer service that puts you first</li>
 							</ul>
 						</Card.Body>
 					</Card>
@@ -95,12 +100,13 @@ const About = () => {
 						<Col md={8} className="mb-4">
 							<Card className="h-100 shadow-lg border-0">
 								<Card.Body>
-									<h3> Our Story</h3>
+									<h3>Our Story</h3>
 									<p>
-										Gift Haven was founded with a simple idea: to make gifting
+										Gift Shop was born from a simple idea: to make gifting
 										effortless yet meaningful. From birthdays to anniversaries,
 										our carefully curated collection ensures that every moment
-										is celebrated beautifully.
+										is celebrated beautifully, with gifts that are as unique as
+										the people receiving them.
 									</p>
 								</Card.Body>
 							</Card>
@@ -127,13 +133,14 @@ const About = () => {
 				<Col md={12} lg={12} sm={12} className="mb-4">
 					<Card className="h-100 shadow-lg border-0">
 						<Card.Body>
-							<h3> Get in Touch</h3>
+							<h3>Get in Touch</h3>
 							<p>
-								We'd love to hear from you! Have questions or need help finding
-								the perfect gift? Reach out to our team anytime.
+								We'd love to hear from you! Whether you have questions or need
+								help finding the perfect gift, our team is here to assist you
+								every step of the way.
 							</p>
 							<p>
-								<strong>Email:</strong> support@gifthaven.com <br />
+								<strong>Email:</strong> support@giftshop.com <br />
 								<strong>Phone:</strong> +1 (555) 123-4567
 							</p>
 						</Card.Body>
