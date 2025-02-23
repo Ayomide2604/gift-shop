@@ -2,12 +2,18 @@ import React from "react";
 import { Container, Row, Col, Button, Table } from "react-bootstrap";
 import useCartStore from "../../../store/cartStore";
 import useAuthStore from "../../../store/authStore";
-import { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import Numeral from "react-numeral";
 import { Link } from "react-router-dom";
 const Cart = () => {
 	const isAuthenticated = useAuthStore((state) => state.isAuthenticated);
-	const { cart, loading, error } = useCartStore();
+	const navigate = useNavigate();
+	const { cart, loading, error, removeFromCart } = useCartStore();
+
+	const handleRemoveFromCart = (itemId) => {
+		removeFromCart(itemId);
+		window.location.reload();
+	};
 
 	if (!isAuthenticated) {
 		return (
@@ -65,6 +71,7 @@ const Cart = () => {
 									<th>Price</th>
 									<th>Quantity</th>
 									<th>Total</th>
+									<th>Remove</th>
 								</tr>
 							</thead>
 							<tbody>
@@ -98,6 +105,15 @@ const Cart = () => {
 										</td>
 										<td className="align-middle">
 											₦<Numeral value={item.subtotal} format={"0,0"} />
+										</td>
+										<td className="align-middle">
+											<Button
+												variant="outline-danger"
+												size="sm"
+												onClick={() => handleRemoveFromCart(item.id)}
+											>
+												Remove
+											</Button>
 										</td>
 									</tr>
 								))}
