@@ -8,7 +8,12 @@ import { Link } from "react-router-dom";
 const Cart = () => {
 	const isAuthenticated = useAuthStore((state) => state.isAuthenticated);
 	const navigate = useNavigate();
-	const { cart, loading, error, removeFromCart } = useCartStore();
+	const { cart, loading, error, removeFromCart, clearCart } = useCartStore();
+
+	const handleClearCart = () => {
+		clearCart();
+		window.location.reload();
+	};
 
 	const handleRemoveFromCart = (itemId) => {
 		removeFromCart(itemId);
@@ -49,8 +54,13 @@ const Cart = () => {
 	return (
 		<Container className="py-5">
 			<Row>
-				<Col>
+				<Col className="d-flex justify-content-between align-items-center">
 					<h1 className="text-center mb-4">Shopping Cart</h1>
+					{cart.items.length > 0 && (
+						<Button variant="danger" onClick={handleClearCart}>
+							Clear Cart
+						</Button>
+					)}
 				</Col>
 			</Row>
 			{cart.items.length === 0 ? (
