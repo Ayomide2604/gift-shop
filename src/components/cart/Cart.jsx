@@ -107,13 +107,11 @@ const Cart = () => {
 											₦<Numeral value={item.subtotal} format={"0,0"} />
 										</td>
 										<td className="align-middle">
-											<Button
-												variant="outline-danger"
-												size="sm"
+											<i
+												class="bi bi-trash text-danger"
+												style={{ fontSize: "20px", cursor: "pointer" }}
 												onClick={() => handleRemoveFromCart(item.id)}
-											>
-												Remove
-											</Button>
+											></i>
 										</td>
 									</tr>
 								))}
