@@ -13,7 +13,7 @@ const Hero = () => {
 			id: 2,
 			title: "Personalized Gifts",
 			description: "Create personalized gifts that are truly one-of-a-kind.",
-			imgSrc: "/home/hero1.png",
+			imgSrc: "/home/hero3.png",
 		},
 	];
 
@@ -22,7 +22,12 @@ const Hero = () => {
 			<Carousel className="hero-carousel">
 				{slides.map((slide) => (
 					<Carousel.Item key={slide.id}>
-						<Row className="hero-section d-flex justify-content-center align-items-center">
+						<Row
+							className="hero-section d-flex justify-content-center align-items-center "
+							style={{
+								height: "100vh",
+							}}
+						>
 							<Col
 								lg={6}
 								md={6}
