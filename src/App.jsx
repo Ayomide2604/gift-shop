@@ -16,6 +16,7 @@ import ProductList from "./components/products/ProductList";
 import ProductDetail from "./components/products/ProductDetail";
 import Dashboard from "./components/dashboard/Dashboard";
 import Cart from "./components/cart/Cart";
+import PageNotFound from "./components/partials/PageNotFound";
 
 function App() {
 	return (
@@ -35,6 +36,7 @@ function App() {
 				<Route path="/signup" element={<Signup />} />
 				<Route path="/dashboard" element={<Dashboard />} />
 				<Route path="/cart" element={<Cart />} />
+				<Route path="*" element={<PageNotFound />} />
 			</Routes>
 			<Footer />
 		</div>
