@@ -96,6 +96,7 @@ const Cart = () => {
 							<thead className="bg-light">
 								<tr>
 									<th>Product</th>
+									<th>Image</th>
 									<th>Price</th>
 									<th>Quantity</th>
 									<th>Total</th>
@@ -105,6 +106,9 @@ const Cart = () => {
 							<tbody>
 								{cart.items.map((item) => (
 									<tr key={item.id}>
+										<td className="align-middle">
+											{item.item_data?.name}
+										</td>
 										<td className="align-middle">
 											<img
 												src={item.item_data?.image_url}
