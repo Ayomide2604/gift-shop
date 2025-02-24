@@ -2,12 +2,15 @@ import React from "react";
 import { Container, Row, Col, Button, Table } from "react-bootstrap";
 import useCartStore from "../../../store/cartStore";
 import useAuthStore from "../../../store/authStore";
+import useOrderStore from "../../../store/orderStore";
 import { useNavigate } from "react-router-dom";
 import Numeral from "react-numeral";
 import { Link } from "react-router-dom";
 const Cart = () => {
 	const isAuthenticated = useAuthStore((state) => state.isAuthenticated);
+	const user = useAuthStore((state) => state.user);
 	const navigate = useNavigate();
+	const { placeOrder } = useOrderStore();
 	const {
 		cart,
 		loading,
@@ -17,6 +20,10 @@ const Cart = () => {
 		increaseQuantity,
 		decreaseQuantity,
 	} = useCartStore();
+
+	const handlePlaceOrder = () => {
+		placeOrder(user, cart);
+	};
 
 	const handleIncreaseQuantity = (itemId) => {
 		increaseQuantity(itemId);
@@ -170,7 +177,7 @@ const Cart = () => {
 			)}
 			<Row className="mt-4">
 				<Col className="text-center">
-					<Button variant="primary" size="lg">
+					<Button variant="primary" size="lg" onClick={handlePlaceOrder}>
 						Proceed to Checkout
 					</Button>
 				</Col>

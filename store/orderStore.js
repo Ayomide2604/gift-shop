@@ -50,6 +50,36 @@ const useOrderStore = create((set) => ({
 			set({ error: error.message, loading: false });
 		}
 	},
+
+	placeOrder: async (user, cart) => {
+		const { isAuthenticated, accessToken } = useAuthStore.getState();
+		if (!isAuthenticated) {
+			set({ error: "Please log in to place an order." });
+			toast.error("Please log in to place an order.");
+			return;
+		}
+
+		set({ loading: true, error: null });
+		try {
+			const response = await axios.post(
+				`${VITE_API_URL}/orders/place_order/`,
+				{ user, cart },
+				{
+					headers: {
+						Authorization: `Bearer ${accessToken}`,
+					},
+				}
+			);
+			set({ order: response.data, loading: false });
+			toast.success("Order placed successfully.");
+			setTimeout(() => {
+				window.location.href = "/dashboard";
+			}, 3000);
+		} catch (error) {
+			set({ error: error.message, loading: false });
+			toast.error("Error placing order.");
+		}
+	},
 }));
 
 export default useOrderStore;
