@@ -4,7 +4,7 @@ import { Form, Button, Container, Card } from "react-bootstrap";
 import { NavLink } from "react-router-dom";
 import useAuthStore from "./../../../store/authStore";
 import "./Auth.css";
-import useCartStore from "../../../store/cartStore";
+import PageNotFound from "../partials/PageNotFound";
 const Login = () => {
 	const navigate = useNavigate();
 	const { login, isAuthenticated, user } = useAuthStore();
@@ -22,7 +22,7 @@ const Login = () => {
 		const success = await login(email, password);
 
 		if (success) {
-			navigate(-1) || navigate("/dashboard");
+			navigate("/dashboard");
 		} else {
 			setError("Invalid email or password.");
 		}
@@ -33,7 +33,7 @@ const Login = () => {
 	return (
 		<div>
 			{isAuthenticated ? (
-				<p className="m-5 p-5">Welcome, {user?.username}!</p>
+				<PageNotFound />
 			) : (
 				<div
 					className="auth-container"
