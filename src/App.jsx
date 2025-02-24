@@ -17,7 +17,7 @@ import ProductDetail from "./components/products/ProductDetail";
 import Dashboard from "./components/dashboard/Dashboard";
 import Cart from "./components/cart/Cart";
 import PageNotFound from "./components/partials/PageNotFound";
-import ProtectedRoute from './../store/ProtectedRoutes';
+import ProtectedRoute from "./../store/ProtectedRoutes";
 
 function App() {
 	return (
@@ -40,7 +40,7 @@ function App() {
 
 				{/* Protected Routes */}
 				<Route element={<ProtectedRoute />}>
-					<Route path="/dashboard*" element={<Dashboard />} />
+					<Route path="/dashboard/*" element={<Dashboard />} />
 					<Route path="/cart" element={<Cart />} />
 				</Route>
 			</Routes>
