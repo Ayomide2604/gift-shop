@@ -1,6 +1,6 @@
 import { create } from "zustand";
 import axios from "axios";
-
+import { toast } from "react-toastify";
 const VITE_API_URL = import.meta.env.VITE_API_URL;
 
 const useAuthStore = create((set) => ({
@@ -41,10 +41,12 @@ const useAuthStore = create((set) => ({
 				refreshToken: refresh,
 				isAuthenticated: true,
 			});
+			toast.success("Login successful");
 
 			return true;
 		} catch (error) {
 			console.error("Login failed:", error.response?.data || error.message);
+			toast.error("Login failed");
 			return false;
 		}
 	},
@@ -59,8 +61,10 @@ const useAuthStore = create((set) => ({
 				first_name,
 				last_name,
 			});
+			toast.success("Signup successful You can now login to your account");
 		} catch (error) {
 			console.error("Signup failed:", error.response?.data || error.message);
+			toast.error("Signup failed");
 		}
 	},
 
@@ -77,6 +81,7 @@ const useAuthStore = create((set) => ({
 			refreshToken: null,
 			isAuthenticated: false,
 		});
+		toast.success("Logout successful");
 	},
 }));
 
