@@ -6,6 +6,8 @@ import useOrderStore from "../../../store/orderStore";
 import { useNavigate } from "react-router-dom";
 import Numeral from "react-numeral";
 import { Link } from "react-router-dom";
+import EmptyCart from "./EmptyCart";
+
 const Cart = () => {
 	const isAuthenticated = useAuthStore((state) => state.isAuthenticated);
 	const user = useAuthStore((state) => state.user);
@@ -74,6 +76,10 @@ const Cart = () => {
 	}
 	if (error) {
 		return <div>Error: {error}</div>;
+	}
+
+	if (cart.items.length === 0) {
+		return <EmptyCart />;
 	}
 
 	return (
