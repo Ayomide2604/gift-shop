@@ -5,7 +5,7 @@ import Numeral from "react-numeral";
 import { Button } from "react-bootstrap";
 import { format } from "date-fns";
 import useOrderStore from "../../../store/orderStore";
-import "./orders.css"; 
+import "./orders.css";
 
 const OrderList = () => {
 	const { orders, loading, error, fetchOrders } = useOrderStore(
@@ -95,7 +95,7 @@ const OrderList = () => {
 const getBadgeClass = (status) => {
 	switch (status) {
 		case "pending":
-			return "bg-warning";
+			return "bg-secondary";
 		case "processing":
 			return "bg-info";
 		case "shipped":

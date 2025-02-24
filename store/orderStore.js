@@ -78,8 +78,8 @@ const useOrderStore = create((set) => ({
 			set({ order: response.data, loading: false });
 			toast.success("Order placed successfully.");
 			setTimeout(() => {
-				window.location.href = "/dashboard";
-			}, 3000);
+				window.location.href = "/checkout";
+			}, 2000);
 		} catch (error) {
 			set({ error: error.message, loading: false });
 			toast.error("Error placing order.");
