@@ -15,6 +15,7 @@ const useCartStore = create((set, get) => ({
 		const { isAuthenticated, accessToken } = useAuthStore.getState();
 		if (!isAuthenticated) {
 			set({ error: "Please log in to view your cart." });
+			toast.error("Please log in to view your cart.");
 			return;
 		}
 
