@@ -21,7 +21,6 @@ const useOrderStore = create((set) => ({
 
 		set({ loading: true, error: null });
 		try {
-			console.log("Access Token:", accessToken);
 			const response = await axios.get(`${VITE_API_URL}/orders/`, {
 				headers: {
 					Authorization: `Bearer ${accessToken}`,
@@ -37,9 +36,14 @@ const useOrderStore = create((set) => ({
 
 	// Fetch a single order by ID
 	fetchOrderById: async (orderId) => {
+		const { isAuthenticated, accessToken } = useAuthStore.getState();
+		if (!isAuthenticated) {
+			set({ error: "Please log in to view your orders." });
+			toast.error("Please log in to view your orders.");
+			return;
+		}
 		set({ loading: true, error: null });
 		try {
-			const accessToken = localStorage.getItem("accessToken");
 			const response = await axios.get(`${VITE_API_URL}/orders/${orderId}`, {
 				headers: {
 					Authorization: `Bearer ${accessToken}`,
@@ -48,6 +52,7 @@ const useOrderStore = create((set) => ({
 			set({ order: response.data, loading: false });
 		} catch (error) {
 			set({ error: error.message, loading: false });
+			toast.error("Error fetching order.");
 		}
 	},
 

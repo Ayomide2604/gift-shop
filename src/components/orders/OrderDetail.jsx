@@ -1,62 +1,81 @@
-import React from "react";
-import {
-	RiPrinterLine,
-	RiArrowGoBackFill,
-	RiCheckboxCircleFill,
-	RiEmotionNormalFill,
-	RiHourglassFill,
-} from "react-icons/ri";
+import { format } from "date-fns";
 import { Container, Row, Col } from "react-bootstrap";
-import { Link } from "react-router-dom";
+import useOrderStore from "../../../store/orderStore";
+import "./orders.css";
+import { useEffect } from "react";
+import { useParams } from "react-router-dom";
+import { Numeral } from "react-numeral";
+
 const OrderDetail = () => {
+	const { order, fetchOrderById, loading, error } = useOrderStore();
+	const { orderId } = useParams();
+
+	useEffect(() => {
+		fetchOrderById(orderId);
+	}, [orderId]);
+
+	if (loading) {
+		return <div>Loading...</div>;
+	}
+
+	if (error) {
+		return <div>Error: {error}</div>;
+	}
+
 	return (
 		<Container className="order-detail-container">
 			<Row className="order-header">
-				<Col>
+				<Col lg={12}>
 					<h1 className="order-title">Order Details</h1>
-				</Col>
-				<Col className="text-end">
-					<RiPrinterLine className="icon" />
-					<Link to="/dashboard">
-						<RiArrowGoBackFill className="icon" />
-					</Link>
 				</Col>
 			</Row>
 			<Row className="order-content">
-				{/* Example order details content */}
-				<Col md={6} className="order-info">
+				<Col lg={12} className="order-info">
 					<p>
-						<strong>Order Number:</strong> #123456
+						<strong>Order Number:</strong> #{order?.id}
 					</p>
 					<p>
-						<strong>Order Date:</strong> October 10, 2023
+						<strong>Order Date:</strong>
+						{"  "}
+						{order?.created_at
+							? format(new Date(order.created_at), "MMMM d, yyyy h:mm a")
+							: "N/A"}
 					</p>
 					<p>
-						<strong>Customer Name:</strong> John Doe
+						<strong>Status:</strong> {order?.status}
 					</p>
 				</Col>
-				<Col md={6} className="order-items">
+				<Col lg={12} className="order-items">
 					<h2>Items</h2>
-					<ul>
-						<li>Product 1 - Quantity: 2</li>
-						<li>Product 2 - Quantity: 1</li>
-						<li>Product 3 - Quantity: 5</li>
+					<ul className="list-group">
+						{order?.items?.map((item) => (
+							<li
+								className="list-group-item  d-flex align-items-center"
+								key={item.id}
+							>
+								<img
+									src={item.item_data?.image_url}
+									alt={item.item_data?.name}
+									className="item-image"
+									style={{
+										height: "80px",
+										width: "80px",
+										objectFit: "cover",
+										marginRight: "10px",
+									}}
+								/>
+								<div className="item-details">
+									<p>
+										<strong>{item.item_data?.name || item.item_data?.title}</strong>
+									</p>
+									<p>
+										Price: ₦{" "}
+										<Numeral value={item.item_data?.price} format={"0,0"} />
+									</p>
+								</div>
+							</li>
+						))}
 					</ul>
-				</Col>
-				{/* End of example order details content */}
-			</Row>
-			<Row>
-				<Col className="order-status">
-					<RiCheckboxCircleFill className="icon" />
-					<span>Order Confirmed</span>
-				</Col>
-				<Col className="order-status">
-					<RiEmotionNormalFill className="icon" />
-					<span>Processing</span>
-				</Col>
-				<Col className="order-status">
-					<RiHourglassFill className="icon" />
-					<span>Awaiting Shipment</span>
 				</Col>
 			</Row>
 		</Container>

@@ -12,8 +12,15 @@ import OrderDetail from "../orders/OrderDetail";
 import useAuthStore from "./../../../store/authStore";
 const Dashboard = () => {
 	const user = useAuthStore((state) => state.user);
+	const isAuthenticated = useAuthStore((state) => state.isAuthenticated);
 	const logout = useAuthStore((state) => state.logout);
+
+	if (!isAuthenticated) {
+		return <Navigate to="/login" />;
+	}
+
 	return (
+
 		<Container fluid className="dashboard-container">
 			<Row className="mt-5">
 				<Col lg={4} className="pb-5">
@@ -24,8 +31,8 @@ const Dashboard = () => {
 								alt="customer"
 								className="img-fluid rounded-circle mb-4"
 							/>
-							<h3 className="fw-bold mb-1">{user.username}</h3>
-							<p className="m-0 text-muted">{user.email}</p>
+							<h3 className="fw-bold mb-1">{user?.username}</h3>
+							<p className="m-0 text-muted">{user?.email}</p>
 						</div>
 						<div className="p-4">
 							<Link className="dropdown-item active" to="/dashboard">

@@ -7,7 +7,7 @@ import { RiHourglassFill } from "react-icons/ri";
 import { Link } from "react-router-dom";
 import Numeral from "react-numeral";
 import { Button } from "react-bootstrap";
-import { formatDistanceToNow } from "date-fns";
+import { format } from "date-fns";
 import useOrderStore from "../../../store/orderStore";
 
 const OrderList = () => {
@@ -124,9 +124,10 @@ const OrderList = () => {
 																</h6>
 															</div>
 
-															{formatDistanceToNow(new Date(order.created_at), {
-																addSuffix: true,
-															})}
+															{format(
+																new Date(order?.created_at),
+																"MMMM d, yyyy h:mm a"
+															)}
 
 															<span
 																className={`badge ${
