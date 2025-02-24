@@ -107,7 +107,7 @@ const Cart = () => {
 								{cart.items.map((item) => (
 									<tr key={item.id}>
 										<td className="align-middle">
-											{item.item_data?.name}
+											{item.item_data?.name || item.item_data?.title}
 										</td>
 										<td className="align-middle">
 											<img
@@ -156,8 +156,8 @@ const Cart = () => {
 									</tr>
 								))}
 								<tr>
-									<td colSpan="3" className="text-end">
-										Total:
+									<td colSpan="5" className="text-end">
+										<h4>Total:</h4>
 									</td>
 									<td>
 										₦<Numeral value={cart.total_cart} format={"0,0"} />
