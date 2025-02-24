@@ -1,10 +1,17 @@
 import { format } from "date-fns";
-import { Container, Row, Col } from "react-bootstrap";
+import { Container, Row, Col, Button } from "react-bootstrap";
 import useOrderStore from "../../../store/orderStore";
-import "./orders.css";
 import { useEffect } from "react";
 import { useParams } from "react-router-dom";
-import { Numeral } from "react-numeral";
+import Numeral from "react-numeral";
+import "./orders.css";
+import {
+	RiPrinterLine,
+	RiArrowGoBackFill,
+	RiCheckboxCircleFill,
+	RiEmotionNormalFill,
+	RiHourglassFill,
+} from "react-icons/ri";
 
 const OrderDetail = () => {
 	const { order, fetchOrderById, loading, error } = useOrderStore();
@@ -24,19 +31,14 @@ const OrderDetail = () => {
 
 	return (
 		<Container className="order-detail-container">
-			<Row className="order-header">
+			<Row>
 				<Col lg={12}>
 					<h1 className="order-title">Order Details</h1>
-				</Col>
-			</Row>
-			<Row className="order-content">
-				<Col lg={12} className="order-info">
 					<p>
 						<strong>Order Number:</strong> #{order?.id}
 					</p>
 					<p>
-						<strong>Order Date:</strong>
-						{"  "}
+						<strong>Order Date:</strong>{" "}
 						{order?.created_at
 							? format(new Date(order.created_at), "MMMM d, yyyy h:mm a")
 							: "N/A"}
@@ -45,31 +47,29 @@ const OrderDetail = () => {
 						<strong>Status:</strong> {order?.status}
 					</p>
 				</Col>
-				<Col lg={12} className="order-items">
+			</Row>
+			<Row>
+				<Col lg={12}>
 					<h2>Items</h2>
 					<ul className="list-group">
 						{order?.items?.map((item) => (
 							<li
-								className="list-group-item  d-flex align-items-center"
+								className="list-group-item d-flex align-items-center"
 								key={item.id}
 							>
 								<img
 									src={item.item_data?.image_url}
 									alt={item.item_data?.name}
 									className="item-image"
-									style={{
-										height: "80px",
-										width: "80px",
-										objectFit: "cover",
-										marginRight: "10px",
-									}}
 								/>
 								<div className="item-details">
 									<p>
-										<strong>{item.item_data?.name || item.item_data?.title}</strong>
+										<strong>
+											{item.item_data?.name || item.item_data?.title}
+										</strong>
 									</p>
 									<p>
-										Price: ₦{" "}
+										Price: ₦
 										<Numeral value={item.item_data?.price} format={"0,0"} />
 									</p>
 								</div>
@@ -78,6 +78,12 @@ const OrderDetail = () => {
 					</ul>
 				</Col>
 			</Row>
+			<Row>
+				<Col lg={12} className="total-amount">
+					Total Amount: ₦<Numeral value={order?.total_price} format={"0,0"} />
+				</Col>
+			</Row>
+			
 		</Container>
 	);
 };

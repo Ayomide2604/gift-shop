@@ -1,0 +1,41 @@
+.dashboard-container {
+	background-color: #f8f9fa;
+}
+
+.sidebar {
+	top: 0;
+	height: 100vh;
+	overflow-y: auto;
+}
+
+.user-info {
+	box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.content-area {
+	padding: 20px;
+}
+
+.order-list {
+	margin-top: 20px;
+}
+
+.order-card {
+	border: 1px solid #e0e0e0;
+	border-radius: 5px;
+	padding: 15px;
+	margin-bottom: 15px;
+	background-color: #fff;
+	transition: box-shadow 0.3s;
+}
+
+.order-card:hover {
+	box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+}
+
+.item-image {
+	height: 80px;
+	width: 80px;
+	object-fit: cover;
+	margin-right: 10px;
+}
