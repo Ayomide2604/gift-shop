@@ -5,17 +5,18 @@ import { Routes, Route } from "react-router-dom";
 import { RiFileListLine } from "react-icons/ri";
 import { RiSettingsLine } from "react-icons/ri";
 import { RiMapPinLine } from "react-icons/ri";
-import { RiWalletLine } from "react-icons/ri";
-import { RiNotificationLine } from "react-icons/ri";
 import { RiLogoutCircleLine } from "react-icons/ri";
 import AddressList from "../shipping/AddressList";
 import OrderList from "../orders/OrderList";
+import useAuthStore from "./../../../store/authStore";
 const Dashboard = () => {
+	const user = useAuthStore((state) => state.user);
+	const logout = useAuthStore((state) => state.logout);
 	return (
 		<Container fluid className="dashboard-container">
 			<Row>
 				<Col lg={12} sm={12} md={12} className="text-center mt-5 pt-3">
-					<h2>Welcome to the Dashboard</h2>
+					<h2>Dashboard</h2>
 				</Col>
 			</Row>
 
@@ -45,7 +46,7 @@ const Dashboard = () => {
 											<RiMapPinLine /> Address
 										</Link>
 
-										<Link className="dropdown-item" to="../index.html">
+										<Link className="dropdown-item" to="/" onClick={logout}>
 											<RiLogoutCircleLine /> Logout
 										</Link>
 									</div>
