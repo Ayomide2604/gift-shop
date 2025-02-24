@@ -13,7 +13,11 @@ const useCategoryStore = create((set) => ({
 		set((state) => ({ ...state, Loading: true, error: null }));
 		try {
 			const response = await axios.get(`${VITE_API_URL}/categories/`);
-			set((state) => ({ ...state, categories: response.data, Loading: false }));
+			set((state) => ({
+				...state,
+				categories: response.data.results,
+				Loading: false,
+			}));
 		} catch (error) {
 			set((state) => ({ ...state, error: error.message, Loading: false }));
 		}

@@ -12,7 +12,11 @@ const usePackageStore = create((set) => ({
 		set((state) => ({ ...state, Loading: true, error: null }));
 		try {
 			const response = await axios.get(`${VITE_API_URL}/packages/`);
-			set((state) => ({ ...state, packages: response.data, Loading: false }));
+			set((state) => ({
+				...state,
+				packages: response.data.results,
+				Loading: false,
+			}));
 		} catch (error) {
 			set((state) => ({ ...state, error: error.message, Loading: false }));
 		}

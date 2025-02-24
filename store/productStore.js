@@ -13,7 +13,11 @@ const useProductStore = create((set) => ({
 		set((state) => ({ ...state, Loading: true, error: null }));
 		try {
 			const response = await axios.get(`${VITE_API_URL}/products/`);
-			set((state) => ({ ...state, products: response.data, Loading: false }));
+			set((state) => ({
+				...state,
+				products: response.data.results,
+				Loading: false,
+			}));
 		} catch (error) {
 			set((state) => ({ ...state, error: error.message, Loading: false }));
 		}
