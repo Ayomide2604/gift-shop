@@ -4,7 +4,9 @@ import { RiArrowGoBackFill } from "react-icons/ri";
 import { RiCheckboxCircleFill } from "react-icons/ri";
 import { RiEmotionNormalFill } from "react-icons/ri";
 import { RiHourglassFill } from "react-icons/ri";
+import { Link } from "react-router-dom";
 import Numeral from "react-numeral";
+import { Button } from "react-bootstrap";
 import { formatDistanceToNow } from "date-fns";
 import useOrderStore from "../../../store/orderStore";
 
@@ -143,6 +145,13 @@ const OrderList = () => {
 															>
 																{order.status}
 															</span>
+															<Button
+																as={Link}
+																to={`/dashboard/orders/${order.id}`}
+																variant="primary"
+															>
+																View
+															</Button>
 														</div>
 													</div>
 												</div>
