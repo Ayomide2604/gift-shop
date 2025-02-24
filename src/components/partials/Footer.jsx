@@ -1,81 +1,114 @@
 import React from "react";
-import { Container, Row, Col } from "react-bootstrap";
-import "./partials.css";
+
 const Footer = () => {
 	return (
-		<>
-			<Container fluid className="footer-container">
-				<nav>
-					<Row>
-						<Col
-							lg={4}
-							className=" p-5"
-							style={{ borderRight: "1px solid #6c757d" }}
-						>
-							<h5>Contact Us</h5>
-							<Col lg={12} className="gap-4 d-grid justify-content-between ">
-								<Col>
-									<i class="bi bi-geo-alt"></i>
+		<div className="footer-container mt-5   mb-3">
+			<footer className="">
+				<div className="row p-5">
+					<div className="col-3">
+						<h5>Site Map</h5>
+						<ul className="nav flex-column">
+							<li className="nav-item mb-2">
+								<a href="#" className="nav-link p-0 text-muted">
+									Home
+								</a>
+							</li>
+							<li className="nav-item mb-2">
+								<a href="#" className="nav-link p-0 text-muted">
+									About Us
+								</a>
+							</li>
+							<li className="nav-item mb-2">
+								<a href="#" className="nav-link p-0 text-muted">
+									Contact Us
+								</a>
+							</li>
+							<li className="nav-item mb-2">
+								<a href="#" className="nav-link p-0 text-muted">
+									Packages
+								</a>
+							</li>
+							<li className="nav-item mb-2">
+								<a href="#" className="nav-link p-0 text-muted">
+									Products
+								</a>
+							</li>
+						</ul>
+					</div>
 
-									<span>Address 234, Lagos, Nigeria</span>
-								</Col>
-								<Col>
-									<i class="bi bi-telephone"></i>
-
-									<span>(123) 456-7890</span>
-								</Col>
-								<Col>
-									<i class="bi bi-envelope"></i>
-
-									<span>email@gmail.com</span>
-								</Col>
-							</Col>
-						</Col>
-						<Col
-							lg={4}
-							className=" p-5"
-							style={{ borderRight: "1px solid #6c757d" }}
-						>
-							<h5>Gift Shop</h5>
-							<p>Home</p>
-							<p>About</p>
-							<p>Packages</p>
-							<p>Contact</p>
-							<p>Login</p>
-						</Col>
-						<Col lg={4} className=" p-5">
-							<h5>Useful Links</h5>
-							<p>Cookies Policy</p>
-							<p>Privacy Policy</p>
-							<p>Terms & Conditions</p>
-						</Col>
-
-						<Col
-							lg={12}
-							className="d-flex justify-content-between align-items-center   p-5"
-							style={{ borderTop: "1px solid #6c757d" }}
-						>
-							<Col lg={8}>
-								<div className="d-flex gap-2 justify-content-left">
-									<p>
-										Copyright &copy; <strong>GiftShop</strong>. All Rights
-										Reserved
-									</p>
-								</div>
-							</Col>
-							<Col lg={4}>
-								<div className="d-flex gap-2 justify-content-end">
-									<i class="bi bi-instagram p-3"></i>
-									<i class="bi bi-facebook p-3"></i>
-									<i class="bi bi-twitter p-3"></i>
-									<i class="bi bi-youtube p-3"></i>
-								</div>
-							</Col>
-						</Col>
-					</Row>
-				</nav>
-			</Container>
-		</>
+					<div className="col-3">
+						<h5>Frequently Asked Questions</h5>
+						<ul className="nav flex-column">
+							<li className="nav-item mb-2">
+								<a href="#" className="nav-link p-0 text-muted">
+									Terms & Conditions
+								</a>
+							</li>
+							<li className="nav-item mb-2">
+								<a href="#" className="nav-link p-0 text-muted">
+									Returns & Refunds
+								</a>
+							</li>
+							<li className="nav-item mb-2">
+								<a href="#" className="nav-link p-0 text-muted">
+									Shipping & Delivery
+								</a>
+							</li>
+							<li className="nav-item mb-2">
+								<a href="#" className="nav-link p-0 text-muted">
+									Payment Methods
+								</a>
+							</li>
+							<li className="nav-item mb-2">
+								<a href="#" className="nav-link p-0 text-muted">
+									Customer Support
+								</a>
+							</li>
+						</ul>
+					</div>
+					<div className="col-5 py-5 px-3">
+						<form>
+							<h5>Subscribe to our newsletter</h5>
+							<p>Monthly digest of whats new and exciting from us.</p>
+							<div className="d-flex w-100 gap-2">
+								<label htmlFor="newsletter1" className="visually-hidden">
+									Email address
+								</label>
+								<input
+									id="newsletter1"
+									type="text"
+									className="form-control"
+									placeholder="Email address"
+								/>
+								<button className="btn btn-primary" type="button">
+									Subscribe
+								</button>
+							</div>
+						</form>
+					</div>
+				</div>
+				<div className="d-flex justify-content-between mt-5 py-5 px-5 border-top">
+					<p>© 2024 , Gift Shop. All rights reserved.</p>
+					<ul className="list-unstyled d-flex">
+						<li className="ms-3">
+							<a className="link-dark" href="#">
+								<i className="bi bi-twitter"></i>
+							</a>
+						</li>
+						<li className="ms-3">
+							<a className="link-dark" href="#">
+								<i className="bi bi-instagram"></i>
+							</a>
+						</li>
+						<li className="ms-3">
+							<a className="link-dark" href="#">
+								<i className="bi bi-facebook"></i>
+							</a>
+						</li>
+					</ul>
+				</div>
+			</footer>
+		</div>
 	);
 };
 

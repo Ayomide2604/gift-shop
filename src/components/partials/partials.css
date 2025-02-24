@@ -19,11 +19,6 @@
 	color: #007bff;
 }
 
-.footer-container {
-	background-color: black;
-	color: white;
-}
-
 .categories-container {
 	background-color: #f8f9fa;
 }
@@ -111,4 +106,8 @@
 		margin-top: 20px;
 		margin-left: 15px;
 	}
+}
+
+.footer-container {
+	background-color: darkgrey;
 }
