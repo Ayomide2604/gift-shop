@@ -1,6 +1,7 @@
 import { create } from "zustand";
 import axios from "axios";
 import useAuthStore from "./authStore";
+import { toast } from "react-toastify";
 const VITE_API_URL = import.meta.env.VITE_API_URL;
 
 const useCartStore = create((set, get) => ({
@@ -69,13 +70,16 @@ const useCartStore = create((set, get) => ({
 				cart: { ...state.cart, items: [...state.cart.items, response.data] },
 				loading: false,
 			}));
+			toast.success("Item added to cart successfully");
 		} catch (error) {
 			set({
 				error: error.response?.data || "Failed to add item",
 				loading: false,
 			});
+			toast.error("Failed to add item");
 		}
-		window.location.reload();
+
+		get().fetchCart();
 	},
 
 	// Remove item from cart (Only if authenticated)
@@ -107,12 +111,15 @@ const useCartStore = create((set, get) => ({
 				},
 				loading: false,
 			}));
+			toast.success("Item removed from cart successfully");
 		} catch (error) {
 			set({
 				error: error.response?.data || "Failed to remove item",
 				loading: false,
 			});
+			toast.error("Failed to remove item");
 		}
+		get().fetchCart();
 	},
 
 	// Clear entire cart
@@ -137,6 +144,7 @@ const useCartStore = create((set, get) => ({
 					Authorization: `Bearer ${accessToken}`,
 				},
 			});
+			toast.success("Cart cleared successfully");
 
 			set({ cart: null, loading: false });
 		} catch (error) {
@@ -144,7 +152,9 @@ const useCartStore = create((set, get) => ({
 				error: error.response?.data || "Failed to clear cart",
 				loading: false,
 			});
+			toast.error("Failed to clear cart");
 		}
+		get().fetchCart();
 	},
 
 	increaseQuantity: async (itemId) => {
@@ -182,12 +192,15 @@ const useCartStore = create((set, get) => ({
 				},
 				loading: false,
 			}));
+			toast.success("Quantity increased successfully");
 		} catch (error) {
 			set({
 				error: error.response?.data || "Failed to increase quantity",
 				loading: false,
 			});
+			toast.error("Failed to increase quantity");
 		}
+		get().fetchCart();
 	},
 
 	decreaseQuantity: async (itemId) => {
@@ -229,12 +242,15 @@ const useCartStore = create((set, get) => ({
 				},
 				loading: false,
 			}));
+			toast.success("Quantity decreased successfully");
 		} catch (error) {
 			set({
 				error: error.response?.data || "Failed to decrease quantity",
 				loading: false,
 			});
+			toast.error("Failed to decrease quantity");
 		}
+		get().fetchCart();
 	},
 }));
 
