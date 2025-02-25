@@ -1,5 +1,6 @@
 import { format } from "date-fns";
 import { Container, Row, Col, Button } from "react-bootstrap";
+import { Link } from "react-router-dom";
 import useOrderStore from "../../../store/orderStore";
 import { useEffect } from "react";
 import { useParams } from "react-router-dom";
@@ -14,8 +15,7 @@ import {
 } from "react-icons/ri";
 
 const OrderDetail = () => {
-	const { order, fetchOrderById, loading, error, initializePayment } =
-		useOrderStore();
+	const { order, fetchOrderById, loading, error } = useOrderStore();
 	const { orderId } = useParams();
 
 	useEffect(() => {
@@ -93,11 +93,8 @@ const OrderDetail = () => {
 						Total Amount: ₦<Numeral value={order?.total_price} format={"0,0"} />
 					</p>
 					{order?.payment_status === "pending" && (
-						<Button
-							variant="primary"
-							onClick={() => initializePayment(order.id)}
-						>
-							Make Payment
+						<Button as={Link} to={`/checkout/${order.id}`} variant="primary">
+							Proceed to Checkout
 						</Button>
 					)}
 				</Col>
