@@ -85,6 +85,65 @@ const useOrderStore = create((set) => ({
 			toast.error("Error placing order.");
 		}
 	},
+
+	initializePayment: async (orderId) => {
+		const { isAuthenticated, accessToken } = useAuthStore.getState();
+		if (!isAuthenticated) {
+			set({ error: "Please log in to make a payment." });
+			toast.error("Please log in to make a payment.");
+			return;
+		}
+		try {
+			const response = await axios.post(
+				`${VITE_API_URL}/orders/${orderId}/initialize_payment/`,
+				{},
+				{
+					headers: { Authorization: `Bearer ${accessToken}` },
+				}
+			);
+
+			if (response.data.checkout_url) {
+				window.location.href = response.data.checkout_url;
+			}
+		} catch (error) {
+			toast.error("Payment initialization failed.");
+			console.error("Payment initialization failed:", error);
+		}
+	},
+
+	verifyPayment: async (reference) => {
+		const { isAuthenticated, accessToken } = useAuthStore.getState();
+		if (!isAuthenticated) {
+			set({ error: "Please log in to verify your payment." });
+			toast.error("Please log in to verify your payment.");
+			return;
+		}
+		try {
+			const response = await axios.get(
+				`${VITE_API_URL}/orders/verify_payment/?reference=${reference}`,
+				{
+					headers: { Authorization: `Bearer ${accessToken}` },
+				}
+			);
+
+			toast.success("Payment Successful!");
+
+			const orderId = response.data.order_id; // Assume backend returns order ID
+			set((state) => ({
+				orders: state.orders.map((order) =>
+					order.reference === reference
+						? { ...order, payment_status: "successful" }
+						: order
+				),
+			}));
+
+			return orderId; // Return order ID to redirect user to order detail page
+		} catch (error) {
+			toast.error("Payment verification failed.");
+			console.error(error);
+			return null;
+		}
+	},
 }));
 
 export default useOrderStore;

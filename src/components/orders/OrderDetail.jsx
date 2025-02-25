@@ -14,7 +14,8 @@ import {
 } from "react-icons/ri";
 
 const OrderDetail = () => {
-	const { order, fetchOrderById, loading, error } = useOrderStore();
+	const { order, fetchOrderById, loading, error, initializePayment } =
+		useOrderStore();
 	const { orderId } = useParams();
 
 	useEffect(() => {
@@ -79,11 +80,20 @@ const OrderDetail = () => {
 				</Col>
 			</Row>
 			<Row>
-				<Col lg={12} className="total-amount">
-					Total Amount: ₦<Numeral value={order?.total_price} format={"0,0"} />
+				<Col lg={12} className="total-amount d-flex justify-content-between">
+					<p>
+						Total Amount: ₦<Numeral value={order?.total_price} format={"0,0"} />
+					</p>
+					{order?.payment_status === "pending" && (
+						<Button
+							variant="primary"
+							onClick={() => initializePayment(order.id)}
+						>
+							Make Payment
+						</Button>
+					)}
 				</Col>
 			</Row>
-			
 		</Container>
 	);
 };

@@ -19,7 +19,7 @@ import Cart from "./components/cart/Cart";
 import PageNotFound from "./components/partials/PageNotFound";
 import Checkout from "./components/checkout/Checkout";
 import ProtectedRoute from "./../store/ProtectedRoutes";
-
+import PaymentSuccess from "./components/partials/PaymentSuccess";
 function App() {
 	return (
 		<div className="app-container pt-5">
@@ -43,8 +43,8 @@ function App() {
 				<Route element={<ProtectedRoute />}>
 					<Route path="/dashboard/*" element={<Dashboard />} />
 					<Route path="/cart" element={<Cart />} />
-
 					<Route path="/checkout" element={<Checkout />} />
+					<Route path="/payment-success" element={<PaymentSuccess />} />
 				</Route>
 			</Routes>
 			<Footer />
