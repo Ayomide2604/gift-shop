@@ -11,7 +11,7 @@ import AddressList from "../shipping/AddressList";
 import OrderList from "../orders/OrderList";
 import OrderDetail from "../orders/OrderDetail";
 import useAuthStore from "./../../../store/authStore";
-import "./dashboard.css"; 
+import "./dashboard.css";
 
 const Dashboard = () => {
 	const user = useAuthStore((state) => state.user);
@@ -22,6 +22,8 @@ const Dashboard = () => {
 		return <Navigate to="/login" />;
 	}
 
+	console.log(user);
+
 	return (
 		<Container fluid className="dashboard-container">
 			<Row className="mt-5">
@@ -29,11 +31,16 @@ const Dashboard = () => {
 					<div className="user-info rounded-4 border bg-white mb-4">
 						<div className="text-center p-5 border-bottom">
 							<img
-								src="https://img.freepik.com/free-photo/i-know-exactly-what-i-want-headshot-attractive-young-african-american-student-stylish-glasses-having-serious-calm-face-expression-feeling-confident-about-his-future-plans-career_273609-179.jpg?uid=R187989283&ga=GA1.1.683011030.1739465736&semt=ais_hybrid"
+								src={
+									user?.profile?.profile_picture_url || "/avatar.png"
+								}
 								alt="customer"
 								className="img-fluid rounded-circle mb-4"
+								style={{ width: "150px", height: "150px", objectFit: "cover" }}
 							/>
-							<h3 className="fw-bold mb-1">{user?.username}</h3>
+							<h3 className="fw-bold mb-1">
+								{user?.profile?.first_name} {user?.profile?.last_name}
+							</h3>
 							<p className="m-0 text-muted">{user?.email}</p>
 						</div>
 						<div className="p-4">
