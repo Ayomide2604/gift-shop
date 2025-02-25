@@ -1,5 +1,7 @@
 .dashboard-container {
-	background-color: #f8f9fa;
+	background: #ffffff;
+	background: linear-gradient(to bottom, #ffffff 0%, #e1e8ed 100%);
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#e1e8ed',GradientType=0 );
 }
 
 .sidebar {

@@ -33,8 +33,9 @@ const OrderDetail = () => {
 	return (
 		<Container className="order-detail-container">
 			<Row>
-				<Col lg={12}>
-					<h1 className="order-title">Order Details</h1>
+				<h1 className=" text-dark">Order Details</h1>
+				<hr />
+				<Col lg={12} className="mt-3 text-muted">
 					<p>
 						<strong>Order Number:</strong> #{order?.id}
 					</p>
@@ -48,10 +49,11 @@ const OrderDetail = () => {
 						<strong>Status:</strong> {order?.status}
 					</p>
 				</Col>
+				<hr />
 			</Row>
 			<Row>
 				<Col lg={12}>
-					<h2>Items</h2>
+					<h2>Order Items</h2>
 					<ul className="list-group">
 						{order?.items?.map((item) => (
 							<li
@@ -64,14 +66,20 @@ const OrderDetail = () => {
 									className="item-image"
 								/>
 								<div className="item-details">
-									<p>
+									<h5>
 										<strong>
 											{item.item_data?.name || item.item_data?.title}
 										</strong>
+									</h5>
+									<p>
+										<span className="fw-bold ">Price: </span>
+										<span className="">
+											₦<Numeral value={item.item_data?.price} format={"0,0"} />
+										</span>
 									</p>
 									<p>
-										Price: ₦
-										<Numeral value={item.item_data?.price} format={"0,0"} />
+										<span className="fw-bold">Quantity:</span>
+										<span className="">{item.quantity}</span>
 									</p>
 								</div>
 							</li>
@@ -80,8 +88,8 @@ const OrderDetail = () => {
 				</Col>
 			</Row>
 			<Row>
-				<Col lg={12} className="total-amount d-flex justify-content-between">
-					<p>
+				<Col lg={12} className="total-amount d-flex justify-content-end mt-3">
+					<p className="me-3 ">
 						Total Amount: ₦<Numeral value={order?.total_price} format={"0,0"} />
 					</p>
 					{order?.payment_status === "pending" && (
