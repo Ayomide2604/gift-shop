@@ -43,7 +43,7 @@ function App() {
 				<Route element={<ProtectedRoute />}>
 					<Route path="/dashboard/*" element={<Dashboard />} />
 					<Route path="/cart" element={<Cart />} />
-					<Route path="/checkout" element={<Checkout />} />
+					<Route path="/checkout/:orderId" element={<Checkout />} />
 					<Route path="/payment-success" element={<PaymentSuccess />} />
 				</Route>
 			</Routes>
