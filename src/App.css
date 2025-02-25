@@ -62,3 +62,7 @@
 .btn.btn-outline-dark:hover {
 	color: white;
 }
+
+.text-primary {
+	color: #5243c2;
+}
