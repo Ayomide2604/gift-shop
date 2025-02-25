@@ -1,6 +1,8 @@
 import { create } from "zustand";
 import axios from "axios";
 import { toast } from "react-toastify";
+import useCartStore from "./cartStore";
+
 const VITE_API_URL = import.meta.env.VITE_API_URL;
 
 const useAuthStore = create((set) => ({
@@ -42,6 +44,7 @@ const useAuthStore = create((set) => ({
 				isAuthenticated: true,
 			});
 			toast.success("Login successful");
+			useCartStore.getState().fetchCart();
 
 			return true;
 		} catch (error) {
