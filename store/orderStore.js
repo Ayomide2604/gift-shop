@@ -77,8 +77,9 @@ const useOrderStore = create((set) => ({
 			);
 			set({ order: response.data, loading: false });
 			toast.success("Order placed successfully.");
+			const orderId = response.data.id;
 			setTimeout(() => {
-				window.location.href = "/checkout";
+				window.location.href = `/checkout/${orderId}`;
 			}, 2000);
 		} catch (error) {
 			set({ error: error.message, loading: false });
