@@ -6,6 +6,7 @@ import useOrderStore from "../../../store/orderStore";
 import { useNavigate } from "react-router-dom";
 import Numeral from "react-numeral";
 import { Link } from "react-router-dom";
+import { useEffect } from "react";
 import EmptyCart from "./EmptyCart";
 
 const Cart = () => {
@@ -19,9 +20,14 @@ const Cart = () => {
 		error,
 		removeFromCart,
 		clearCart,
+		fetchCart,
 		increaseQuantity,
 		decreaseQuantity,
 	} = useCartStore();
+
+	useEffect(() => {
+		fetchCart();
+	}, []);
 
 	const handlePlaceOrder = () => {
 		placeOrder(user, cart);
@@ -34,6 +40,7 @@ const Cart = () => {
 
 	const handleDecreaseQuantity = (itemId) => {
 		decreaseQuantity(itemId);
+		fetchCart();
 		navigate("/cart");
 	};
 
@@ -44,6 +51,7 @@ const Cart = () => {
 
 	const handleRemoveFromCart = (itemId) => {
 		removeFromCart(itemId);
+		fetchCart();
 		navigate("/cart");
 	};
 
