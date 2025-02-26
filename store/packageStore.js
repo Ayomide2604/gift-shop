@@ -10,7 +10,7 @@ const usePackageStore = create((set) => ({
 	previousPage: null,
 	currentPage: localStorage.getItem("packagePage")
 		? parseInt(localStorage.getItem("packagePage"), 10)
-		: 1,
+		: 12,
 	pageSize: 2,
 	Loading: false,
 	error: null,
