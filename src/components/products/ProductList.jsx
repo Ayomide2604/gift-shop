@@ -6,11 +6,26 @@ import Pagination from "../partials/Pagination";
 import ProductFilters from "./ProductFilters";
 
 const ProductList = () => {
-	const { products, Loading, error, fetchProducts } = useProductStore();
+	const {
+		products,
+		Loading,
+		error,
+		fetchProducts,
+		currentPage,
+		setCurrentPage,
+		totalProducts,
+		pageSize,
+	} = useProductStore();
+
+	const totalPages = Math.ceil(totalProducts / pageSize);
+
+	const handlePageChange = (page) => {
+		setCurrentPage(page);
+	};
 
 	useEffect(() => {
-		fetchProducts();
-	}, []);
+		fetchProducts(currentPage);
+	}, [currentPage]);
 
 	if (Loading) {
 		return <div>Loading...</div>;
@@ -43,7 +58,11 @@ const ProductList = () => {
 					</Col>
 				</Row>
 
-				<Pagination />
+				<Pagination
+					totalPages={totalPages}
+					currentPage={currentPage}
+					onPageChange={handlePageChange}
+				/>
 			</Container>
 		</div>
 	);

@@ -8,9 +8,15 @@ const useProductStore = create((set) => ({
 	totalProducts: 0,
 	nextPage: null,
 	previousPage: null,
+	currentPage: 1,
+	pageSize: 2,
 	product: null,
 	Loading: false,
 	error: null,
+
+	setCurrentPage: (page) => {
+		set({ currentPage: page });
+	},
 
 	fetchProducts: async (page = 1) => {
 		set((state) => ({ ...state, Loading: true, error: null }));

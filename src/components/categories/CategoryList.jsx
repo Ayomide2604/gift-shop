@@ -6,11 +6,25 @@ import useCategoryStore from "./../../../store/categoryStore";
 import { useEffect } from "react";
 
 const CategoryList = () => {
-	const { categories, Loading, error, fetchCategories } = useCategoryStore();
+	const {
+		categories,
+		Loading,
+		error,
+		fetchCategories,
+		currentPage,
+		setCurrentPage,
+		totalCategories,
+		pageSize,
+	} = useCategoryStore();
+
+	const totalPages = Math.ceil(totalCategories / pageSize);
+	const handlePageChange = (pageNumber) => {
+		setCurrentPage(pageNumber);
+	};
 
 	useEffect(() => {
-		fetchCategories();
-	}, []);
+		fetchCategories(currentPage);
+	}, [currentPage]);
 
 	if (Loading) {
 		return <div>Loading...</div>;
@@ -36,7 +50,11 @@ const CategoryList = () => {
 				</Row>
 				<Row>
 					<Col className="col-12 d-flex justify-content-center">
-						<Pagination />
+						<Pagination
+							totalPages={totalPages}
+							currentPage={currentPage}
+							onPageChange={handlePageChange}
+						/>
 					</Col>
 				</Row>
 			</Container>

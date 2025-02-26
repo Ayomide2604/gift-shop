@@ -1,29 +1,18 @@
 import React from "react";
 import { Row, Col } from "react-bootstrap";
-import useProductStore from "../../../store/productStore";
 
-const Pagination = () => {
-	const { totalProducts, currentPage, fetchProducts, nextPage, previousPage } =
-		useProductStore();
-
-	const pageSize = 2;
-	const totalPages = Math.ceil(totalProducts / pageSize);
-
-	const handlePageChange = (page) => {
-		if (page > 0 && page <= totalPages) {
-			fetchProducts(page);
-		}
-	};
+const Pagination = ({ totalPages, currentPage, onPageChange }) => {
+	if (totalPages <= 1) return null;
 
 	return (
 		<Row>
 			<Col className="col-12 d-flex justify-content-center">
 				<nav aria-label="Page navigation">
 					<ul className="pagination">
-						<li className={`page-item ${!previousPage ? "disabled" : ""}`}>
+						<li className={`page-item ${currentPage === 1 ? "disabled" : ""}`}>
 							<button
 								className="page-link"
-								onClick={() => handlePageChange(currentPage - 1)}
+								onClick={() => onPageChange(currentPage - 1)}
 							>
 								Previous
 							</button>
@@ -40,7 +29,7 @@ const Pagination = () => {
 								>
 									<button
 										className="page-link"
-										onClick={() => handlePageChange(page)}
+										onClick={() => onPageChange(page)}
 									>
 										{page}
 									</button>
@@ -48,10 +37,14 @@ const Pagination = () => {
 							);
 						})}
 
-						<li className={`page-item ${!nextPage ? "disabled" : ""}`}>
+						<li
+							className={`page-item ${
+								currentPage === totalPages ? "disabled" : ""
+							}`}
+						>
 							<button
 								className="page-link"
-								onClick={() => handlePageChange(currentPage + 1)}
+								onClick={() => onPageChange(currentPage + 1)}
 							>
 								Next
 							</button>

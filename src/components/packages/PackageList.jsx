@@ -7,11 +7,26 @@ import usePackageStore from "./../../../store/packageStore";
 import { useEffect } from "react";
 
 const Packages = () => {
-	const { packages, Loading, error, fetchPackages } = usePackageStore();
+	const {
+		packages,
+		Loading,
+		error,
+		fetchPackages,
+		currentPage,
+		setCurrentPage,
+		totalPackages,
+		pageSize,
+	} = usePackageStore();
+
+	const totalPages = Math.ceil(totalPackages / pageSize);
 
 	useEffect(() => {
-		fetchPackages();
-	}, []);
+		fetchPackages(currentPage);
+	}, [currentPage]);
+
+	const handlePageChange = (pageNumber) => {
+		setCurrentPage(pageNumber);
+	};
 
 	if (Loading) {
 		return <div>Loading...</div>;
@@ -44,7 +59,11 @@ const Packages = () => {
 					</Col>
 				</Row>
 
-				<Pagination />
+				<Pagination
+					totalPages={totalPages}
+					currentPage={currentPage}
+					onPageChange={handlePageChange}
+				/>
 			</Container>
 		</div>
 	);
