@@ -8,13 +8,16 @@ const usePackageStore = create((set) => ({
 	totalPackages: 0,
 	nextPage: null,
 	previousPage: null,
-	currentPage: 1,
+	currentPage: localStorage.getItem("packagePage")
+		? parseInt(localStorage.getItem("packagePage"), 10)
+		: 1,
 	pageSize: 2,
 	Loading: false,
 	error: null,
 	gift: null,
 
 	setCurrentPage: (page) => {
+		localStorage.setItem("packagePage", page);
 		set({ currentPage: page });
 	},
 
@@ -33,6 +36,7 @@ const usePackageStore = create((set) => ({
 				currentPage: page,
 				Loading: false,
 			}));
+			localStorage.setItem("packagePage", page);
 		} catch (error) {
 			set((state) => ({ ...state, error: error.message, Loading: false }));
 		}

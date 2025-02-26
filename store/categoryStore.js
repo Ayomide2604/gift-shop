@@ -9,12 +9,15 @@ const useCategoryStore = create((set) => ({
 	totalCategories: 0,
 	nextPage: null,
 	previousPage: null,
-	currentPage: 1,
+	currentPage: localStorage.getItem("categoryPage")
+		? parseInt(localStorage.getItem("categoryPage"), 10)
+		: 1,
 	pageSize: 2,
 	Loading: false,
 	error: null,
 
 	setCurrentPage: (page) => {
+		localStorage.setItem("categoryPage", page);
 		set({ currentPage: page });
 	},
 
@@ -33,6 +36,7 @@ const useCategoryStore = create((set) => ({
 				currentPage: page,
 				Loading: false,
 			}));
+			localStorage.setItem("categoryPage", page);
 		} catch (error) {
 			set((state) => ({ ...state, error: error.message, Loading: false }));
 		}
