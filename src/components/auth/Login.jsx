@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { Form, Button, Container, Card } from "react-bootstrap";
 import { NavLink } from "react-router-dom";
 import useAuthStore from "./../../../store/authStore";
-import "./Auth.css";
+import "./auth.css";
 import PageNotFound from "../partials/PageNotFound";
 const Login = () => {
 	const navigate = useNavigate();
