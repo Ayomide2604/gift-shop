@@ -39,6 +39,7 @@ const usePackageStore = create((set) => ({
 			localStorage.setItem("packagePage", page);
 		} catch (error) {
 			set((state) => ({ ...state, error: error.message, Loading: false }));
+			console.log(error);
 		}
 	},
 

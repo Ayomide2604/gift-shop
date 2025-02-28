@@ -39,6 +39,7 @@ const useCategoryStore = create((set) => ({
 			localStorage.setItem("categoryPage", page);
 		} catch (error) {
 			set((state) => ({ ...state, error: error.message, Loading: false }));
+			console.log(error);
 		}
 	},
 
