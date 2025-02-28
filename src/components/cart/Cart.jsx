@@ -1,5 +1,5 @@
 import React from "react";
-import { Container, Row, Col, Button, Table } from "react-bootstrap";
+import { Container, Row, Col, Button, Table, Spinner } from "react-bootstrap";
 import useCartStore from "../../../store/cartStore";
 import useAuthStore from "../../../store/authStore";
 import useOrderStore from "../../../store/orderStore";
@@ -28,6 +28,23 @@ const Cart = () => {
 	useEffect(() => {
 		fetchCart();
 	}, []);
+
+	if (loading) {
+		return (
+			<Container
+				className="d-flex justify-content-center align-items-center"
+				style={{ height: "100vh" }}
+			>
+				<Spinner animation="border" role="status">
+					<span className="visually-hidden">Loading...</span>
+				</Spinner>
+			</Container>
+		);
+	}
+
+	if (error) {
+		return <div>Error: {error}</div>;
+	}
 
 	const handlePlaceOrder = () => {
 		placeOrder(user, cart);
