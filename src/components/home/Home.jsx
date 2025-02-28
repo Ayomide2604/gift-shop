@@ -32,7 +32,9 @@ const Home = () => {
 
 	useEffect(() => {
 		if (!categoriesLoading && !packagesLoading) {
-			setIsLoading(false);
+			setTimeout(() => {
+				setIsLoading(false);
+			}, 5000);
 		}
 	}, [categoriesLoading, packagesLoading]);
 
