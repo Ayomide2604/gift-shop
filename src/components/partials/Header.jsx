@@ -5,12 +5,14 @@ import { BsCart4 } from "react-icons/bs";
 import useAuthStore from "./../../../store/authStore";
 import useCartStore from "./../../../store/cartStore";
 import "./partials.css";
+import { useLocation } from "react-router-dom";
 
 const Header = () => {
 	const { cart, fetchCart } = useCartStore();
 	const user = useAuthStore((state) => state.user);
 	const logout = useAuthStore((state) => state.logout);
 	const [expanded, setExpanded] = useState(false);
+	const location = useLocation();
 
 	useEffect(() => {
 		fetchCart();
@@ -38,19 +40,54 @@ const Header = () => {
 				/>
 				<Navbar.Collapse id="responsive-navbar-nav">
 					<Nav className="me-auto">
-						<Nav.Link as={Link} to="/about" onClick={handleNavLinkClick}>
+						<Nav.Link
+							as={Link}
+							to="/about"
+							onClick={handleNavLinkClick}
+							className={`nav-link ${
+								location.pathname === "/about" ? "active" : ""
+							}`}
+						>
 							About
 						</Nav.Link>
-						<Nav.Link as={Link} to="/categories" onClick={handleNavLinkClick}>
+						<Nav.Link
+							as={Link}
+							to="/categories"
+							onClick={handleNavLinkClick}
+							className={`nav-link ${
+								location.pathname === "/categories" ? "active" : ""
+							}`}
+						>
 							Categories
 						</Nav.Link>
-						<Nav.Link as={Link} to="/packages" onClick={handleNavLinkClick}>
+						<Nav.Link
+							as={Link}
+							to="/packages"
+							onClick={handleNavLinkClick}
+							className={`nav-link ${
+								location.pathname === "/packages" ? "active" : ""
+							}`}
+						>
 							Packages
 						</Nav.Link>
-						<Nav.Link as={Link} to="/products" onClick={handleNavLinkClick}>
+						<Nav.Link
+							as={Link}
+							to="/products"
+							onClick={handleNavLinkClick}
+							className={`nav-link ${
+								location.pathname === "/products" ? "active" : ""
+							}`}
+						>
 							Products
 						</Nav.Link>
-						<Nav.Link as={Link} to="/contact" onClick={handleNavLinkClick}>
+						<Nav.Link
+							as={Link}
+							to="/contact"
+							onClick={handleNavLinkClick}
+							className={`nav-link ${
+								location.pathname === "/contact" ? "active" : ""
+							}`}
+						>
 							Contact
 						</Nav.Link>
 					</Nav>
@@ -61,6 +98,9 @@ const Header = () => {
 									as={Link}
 									to="/dashboard"
 									onClick={handleNavLinkClick}
+									className={`nav-link ${
+										location.pathname === "/dashboard" ? "active" : ""
+									}`}
 								>
 									(Welcome, {user.username || user.email})
 								</Nav.Link>
