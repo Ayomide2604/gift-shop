@@ -2,7 +2,8 @@ import { useEffect } from "react";
 
 import { Link } from "react-router-dom";
 import Numeral from "react-numeral";
-import { Button } from "react-bootstrap";
+import { Button, Container, Spinner } from "react-bootstrap";
+
 import { format } from "date-fns";
 import useOrderStore from "../../../store/orderStore";
 import "./orders.css";
@@ -17,7 +18,16 @@ const OrderList = () => {
 	}, []);
 
 	if (loading) {
-		return <div>Loading...</div>;
+		return (
+			<Container
+				className="d-flex justify-content-center align-items-center"
+				style={{ height: "100vh" }}
+			>
+				<Spinner animation="border" role="status">
+					<span className="visually-hidden">Loading...</span>
+				</Spinner>
+			</Container>
+		);
 	}
 
 	if (error) {

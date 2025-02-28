@@ -1,5 +1,5 @@
 import { format } from "date-fns";
-import { Container, Row, Col, Button } from "react-bootstrap";
+import { Container, Row, Col, Button, Spinner } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import useOrderStore from "../../../store/orderStore";
 import { useEffect } from "react";
@@ -23,7 +23,16 @@ const OrderDetail = () => {
 	}, [orderId]);
 
 	if (loading) {
-		return <div>Loading...</div>;
+		return (
+			<Container
+				className="d-flex justify-content-center align-items-center"
+				style={{ height: "100vh" }}
+			>
+				<Spinner animation="border" role="status">
+					<span className="visually-hidden">Loading...</span>
+				</Spinner>
+			</Container>
+		);
 	}
 
 	if (error) {
