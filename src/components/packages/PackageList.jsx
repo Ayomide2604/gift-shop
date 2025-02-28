@@ -1,5 +1,5 @@
 import React from "react";
-import { Container, Row, Col, Card } from "react-bootstrap";
+import { Container, Row, Col, Spinner } from "react-bootstrap";
 import PackageCard from "../partials/PackageCard";
 import Pagination from "../partials/Pagination";
 import PackageFilters from "./PackageFilters";
@@ -29,7 +29,16 @@ const Packages = () => {
 	};
 
 	if (Loading) {
-		return <div>Loading...</div>;
+		return (
+			<Container
+				className="d-flex justify-content-center align-items-center"
+				style={{ height: "100vh" }}
+			>
+				<Spinner animation="border" role="status">
+					<span className="visually-hidden">Loading...</span>
+				</Spinner>
+			</Container>
+		);
 	}
 
 	if (error) {

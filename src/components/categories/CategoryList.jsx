@@ -1,5 +1,5 @@
 import React from "react";
-import { Container, Row, Col } from "react-bootstrap";
+import { Container, Row, Col, Spinner } from "react-bootstrap";
 import Pagination from "../partials/Pagination";
 import CategoryCard from "../partials/CategoryCard";
 import useCategoryStore from "./../../../store/categoryStore";
@@ -27,7 +27,16 @@ const CategoryList = () => {
 	}, [currentPage]);
 
 	if (Loading) {
-		return <div>Loading...</div>;
+		return (
+			<Container
+				className="d-flex justify-content-center align-items-center"
+				style={{ height: "100vh" }}
+			>
+				<Spinner animation="border" role="status">
+					<span className="visually-hidden">Loading...</span>
+				</Spinner>
+			</Container>
+		);
 	}
 
 	if (error) {

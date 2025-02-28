@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import useProductStore from "./../../../store/productStore";
 import ProductCard from "../partials/ProductCard";
-import { Container, Row, Col } from "react-bootstrap";
+import { Container, Row, Col, Spinner } from "react-bootstrap";
 import Pagination from "../partials/Pagination";
 import ProductFilters from "./ProductFilters";
 
@@ -28,7 +28,16 @@ const ProductList = () => {
 	}, [currentPage]);
 
 	if (Loading) {
-		return <div>Loading...</div>;
+		return (
+			<Container
+				className="d-flex justify-content-center align-items-center"
+				style={{ height: "100vh" }}
+			>
+				<Spinner animation="border" role="status">
+					<span className="visually-hidden">Loading...</span>
+				</Spinner>
+			</Container>
+		);
 	}
 
 	if (error) {

@@ -34,7 +34,7 @@ const Home = () => {
 		if (!categoriesLoading && !packagesLoading) {
 			setTimeout(() => {
 				setIsLoading(false);
-			}, 5000);
+			}, 3000);
 		}
 	}, [categoriesLoading, packagesLoading]);
 
