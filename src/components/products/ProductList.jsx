@@ -4,7 +4,7 @@ import ProductCard from "../partials/ProductCard";
 import { Container, Row, Col, Spinner } from "react-bootstrap";
 import Pagination from "../partials/Pagination";
 import ProductFilters from "./ProductFilters";
-
+import { useLocation } from "react-router-dom";
 const ProductList = () => {
 	const {
 		products,
@@ -19,9 +19,20 @@ const ProductList = () => {
 
 	const totalPages = Math.ceil(totalProducts / pageSize);
 
+	const location = useLocation();
+
 	const handlePageChange = (page) => {
 		setCurrentPage(page);
 	};
+
+	useEffect(() => {
+		return () => {
+			if (location.pathname !== "/products") {
+				setCurrentPage(1);
+			}
+			setCurrentPage(currentPage);
+		};
+	}, [location.pathname, setCurrentPage]);
 
 	useEffect(() => {
 		fetchProducts(currentPage);

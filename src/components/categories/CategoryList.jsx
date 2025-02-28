@@ -26,6 +26,15 @@ const CategoryList = () => {
 		fetchCategories(currentPage);
 	}, [currentPage]);
 
+	useEffect(() => {
+		return () => {
+			if (location.pathname !== "/categories") {
+				setCurrentPage(1);
+			}
+			setCurrentPage(currentPage);
+		};
+	}, [location.pathname, setCurrentPage]);
+
 	if (Loading) {
 		return (
 			<Container

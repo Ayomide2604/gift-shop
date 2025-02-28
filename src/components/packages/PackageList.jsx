@@ -5,7 +5,7 @@ import Pagination from "../partials/Pagination";
 import PackageFilters from "./PackageFilters";
 import usePackageStore from "./../../../store/packageStore";
 import { useEffect } from "react";
-
+import { useLocation } from "react-router-dom";
 const Packages = () => {
 	const {
 		packages,
@@ -20,9 +20,20 @@ const Packages = () => {
 
 	const totalPages = Math.ceil(totalPackages / pageSize);
 
+	const location = useLocation();
+
 	useEffect(() => {
 		fetchPackages(currentPage);
 	}, [currentPage]);
+
+	useEffect(() => {
+		return () => {
+			if (location.pathname !== "/packages") {
+				setCurrentPage(1);
+			}
+			setCurrentPage(currentPage);
+		};
+	}, [location.pathname, setCurrentPage]);
 
 	const handlePageChange = (pageNumber) => {
 		setCurrentPage(pageNumber);
