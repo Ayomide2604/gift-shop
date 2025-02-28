@@ -19,7 +19,7 @@
 	transform: scale(1.05);
 }
 
-// Add media queries for better responsiveness if needed
+/* Add media queries for better responsiveness if needed */
 @media (max-width: 768px) {
 	.card {
 		margin-bottom: 20px;
