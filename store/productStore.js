@@ -11,7 +11,7 @@ const useProductStore = create((set) => ({
 	currentPage: localStorage.getItem("productPage")
 		? parseInt(localStorage.getItem("productPage"), 10)
 		: 1,
-	pageSize: 12,
+	pageSize: 6,
 	product: null,
 	Loading: false,
 	error: null,

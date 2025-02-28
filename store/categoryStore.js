@@ -12,7 +12,7 @@ const useCategoryStore = create((set) => ({
 	currentPage: localStorage.getItem("categoryPage")
 		? parseInt(localStorage.getItem("categoryPage"), 10)
 		: 1,
-	pageSize: 12,
+	pageSize: 6,
 	Loading: false,
 	error: null,
 
