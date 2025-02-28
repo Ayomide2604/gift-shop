@@ -20,7 +20,10 @@ import PageNotFound from "./components/partials/PageNotFound";
 import Checkout from "./components/checkout/Checkout";
 import ProtectedRoute from "./../store/ProtectedRoutes";
 import PaymentSuccess from "./components/partials/PaymentSuccess";
+import useScrollToTop from "./../hooks/useScrollToTop";
 function App() {
+	useScrollToTop();
+
 	return (
 		<div className="app-container pt-5">
 			<Header />
