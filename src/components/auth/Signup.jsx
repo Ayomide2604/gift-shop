@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { Form, Button, Container, Card } from "react-bootstrap";
-import "./Auth.css";
+import "./auth.css";
 import useAuthStore from "../../../store/authStore";
 
 const Signup = () => {
