@@ -24,8 +24,6 @@ const Dashboard = () => {
 		return <Navigate to="/login" />;
 	}
 
-	console.log(user);
-
 	return (
 		<Container fluid className="dashboard-container">
 			<Row className="mt-5">
