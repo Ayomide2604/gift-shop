@@ -53,18 +53,54 @@ const useAuthStore = create((set) => ({
 			return false;
 		}
 	},
-
-	// Signup function
 	signup: async (username, email, password, first_name, last_name) => {
 		try {
-			await axios.post(`${VITE_API_URL}/auth/users/`, {
-				username,
-				email,
-				password,
-				first_name,
-				last_name,
-			});
-			toast.success("Signup successful You can now login to your account");
+			const response = await axios.post(
+				`${VITE_API_URL}/auth/users/`,
+				{
+					username,
+					email,
+					password,
+					first_name,
+					last_name,
+				},
+				{
+					headers: {
+						"Content-Type": "application/json",
+					},
+				}
+			);
+
+			// Optionally, handle the response
+			console.log("Signup response:", response.data);
+			toast.success("Signup successful. You can now login to your account");
+		} catch (error) {
+			console.error("Signup failed:", error.response?.data || error.message);
+			toast.error("Signup failed");
+		}
+	},
+
+	signup: async (username, email, password, first_name, last_name) => {
+		try {
+			const response = await axios.post(
+				`${VITE_API_URL}/auth/users/`,
+				{
+					username,
+					email,
+					password,
+					first_name,
+					last_name,
+				},
+				{
+					headers: {
+						"Content-Type": "application/json",
+					},
+				}
+			);
+
+			// Optionally, handle the response
+			console.log("Signup response:", response.data);
+			toast.success("Signup successful. You can now login to your account");
 		} catch (error) {
 			console.error("Signup failed:", error.response?.data || error.message);
 			toast.error("Signup failed");
